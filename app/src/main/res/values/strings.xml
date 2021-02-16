@@ -10,4 +10,9 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="remaining_courses">Remaining Courses</string>
+    <string name="courses">Courses</string>
+    <string name="units">Units</string>
+    <string name="new_course">New Course</string>
+    <string name="all_courses">All Courses</string>
 </resources>
