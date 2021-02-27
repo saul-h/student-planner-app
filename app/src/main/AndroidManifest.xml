@@ -9,9 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentPlanner">
-        <activity android:name=".MainMenuActivity"></activity>
-        <activity android:name=".DegreeTrackerActivity"
+
+        <activity
+            android:name=".AddNewCourseActivity"
+            android:parentActivityName=".DegreeTrackerActivity">
+
+        </activity>
+
+        <activity android:name=".MainMenuActivity" />
+
+        <activity
+            android:name=".DegreeTrackerActivity"
             android:parentActivityName=".MainMenuActivity">
+
         </activity>
         <activity
             android:name=".ui.login.LoginActivity"

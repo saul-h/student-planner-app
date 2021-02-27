@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddNewCourseActivity">
+
+    <TextView
+        android:id="@+id/txt_newCourseHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="Add New\n  Course"
+        android:textColor="@android:color/black"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_courseName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="28dp"
+        android:text="Course\nName:"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_gradeReceived"
+        app:layout_constraintEnd_toStartOf="@+id/editText_course"
+        app:layout_constraintHorizontal_bias="0.272"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="28dp" />
+
+    <TextView
+        android:id="@+id/txt_gradeReceived"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="49dp"
+        android:text="Grade\nReceived:"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/editText_semester"
+        app:layout_constraintEnd_toStartOf="@+id/editText_grade"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_semester"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:text="Semester\nEnrolled:"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/editText_semester"
+        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_gradeReceived" />
+
+    <TextView
+        android:id="@+id/txt_courseStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="35dp"
+        android:text="Course\nStatus:"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_addCourse"
+        app:layout_constraintEnd_toStartOf="@+id/linear_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_units"
+        android:layout_marginLeft="16dp" />
+
+    <EditText
+        android:id="@+id/editText_course"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="Enter Course Name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/editText_grade"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_courseName"
+        app:layout_constraintTop_toBottomOf="@+id/txt_newCourseHeader"
+        android:layout_marginRight="16dp" />
+
+    <EditText
+        android:id="@+id/editText_grade"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="49dp"
+        android:ems="10"
+        android:hint="Enter Grade Received"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/editText_semester"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.933"
+        app:layout_constraintStart_toEndOf="@+id/txt_gradeReceived"
+        app:layout_constraintTop_toBottomOf="@+id/editText_course"
+        android:layout_marginRight="16dp" />
+
+    <EditText
+        android:id="@+id/editText_semester"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="Enter Semester Enrolled"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_semester"
+        app:layout_constraintTop_toBottomOf="@+id/editText_grade"
+        android:layout_marginRight="16dp" />
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="76dp"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_clear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_courseStatus"
+        app:layout_constraintTop_toBottomOf="@+id/editText_units">
+
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Planned" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="In Progress" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Completed" />
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_addCourse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:layout_marginBottom="25dp"
+        android:text="Add Course"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_clear"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="68dp" />
+
+    <Button
+        android:id="@+id/btn_clear"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="25dp"
+        android:text="Clear"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_addCourse"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="68dp" />
+
+    <TextView
+        android:id="@+id/txt_units"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="48dp"
+        android:text="Units:"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_courseStatus"
+        app:layout_constraintEnd_toStartOf="@+id/editText_units"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_semester"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="48dp" />
+
+    <EditText
+        android:id="@+id/editText_units"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:hint="Enter Course Units"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/linear_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintStart_toEndOf="@+id/txt_units"
+        app:layout_constraintTop_toBottomOf="@+id/editText_semester"
+        android:layout_marginRight="16dp" />
+
+
+
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
