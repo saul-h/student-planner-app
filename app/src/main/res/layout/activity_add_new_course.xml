@@ -141,16 +141,19 @@
 
 
             <RadioButton
+                android:id="@+id/radiobtn_newPlanned"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Planned" />
 
             <RadioButton
+                android:id="@+id/radiobtn_newProgress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="In Progress" />
 
             <RadioButton
+                android:id="@+id/radiobtn_newCompleted"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Completed" />
