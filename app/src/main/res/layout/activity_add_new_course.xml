@@ -169,6 +169,7 @@
         android:layout_marginBottom="25dp"
         android:text="Add Course"
         android:textSize="15dp"
+        android:onClick="addNewCourse"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_clear"
         app:layout_constraintHorizontal_bias="0.0"
@@ -184,6 +185,7 @@
         android:layout_marginBottom="25dp"
         android:text="Clear"
         android:textSize="15dp"
+        android:onClick="clearAllFields"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_addCourse"
@@ -221,14 +223,6 @@
         app:layout_constraintStart_toEndOf="@+id/txt_units"
         app:layout_constraintTop_toBottomOf="@+id/editText_semester"
         android:layout_marginRight="16dp" />
-
-
-
-
-
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
