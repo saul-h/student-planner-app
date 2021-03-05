@@ -80,6 +80,7 @@
         android:layout_marginBottom="24dp"
         android:text="@string/all_courses"
         android:textSize="16dp"
+        android:onClick="startAllCourses"
         app:layout_constraintBottom_toTopOf="@+id/txt_coursesHeader"
         app:layout_constraintEnd_toStartOf="@+id/btn_addNewCourse"
         app:layout_constraintHorizontal_bias="0.5"

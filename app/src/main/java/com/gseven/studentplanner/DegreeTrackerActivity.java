@@ -22,7 +22,23 @@ public class DegreeTrackerActivity extends AppCompatActivity {
     public void startAddNewCourse(View view){
         Intent intent = new Intent(this, AddNewCourseActivity.class);
 
+
         startActivity(intent);
+
+        //TODO: Retrieve the returned Course from AddNewCourse intent and populate the student's list of Courses
+    }
+
+    /**
+     * Opens ViewAllCoursesActivity when user clicks AllCourses Button
+     * @param view
+     */
+    public void startAllCourses(View view) {
+        Intent intent = new Intent(this, ViewAllCoursesActivity.class);
+
+        //TODO: populate intent with list of Course to be displayed in the ViewAllCourses Activity
+
+        startActivity(intent);
+
 
     }
 }
