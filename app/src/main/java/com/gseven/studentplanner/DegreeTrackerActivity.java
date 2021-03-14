@@ -23,6 +23,7 @@ public class DegreeTrackerActivity extends AppCompatActivity {
 
 
     private List<Course> courses;
+
     RecyclerView recyclerView;
 
     @Override
@@ -30,17 +31,16 @@ public class DegreeTrackerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_degree_tracker);
 
-        /** Hard coded Courses for testing/debugging. Will remove when we're able to persist with DB */
-
-        Course course1 = new Course("CECS 445",3,"Complete","Spring 2020",'A');
-        Course course2 = new Course("CECS 491B",3,"Complete","Spring 2020",'A');
-        Course course3 = new Course("CECS 378",3,"Complete","Spring 2020",'B');
-        Course course4 = new Course("CECS 453",3,"Complete","Spring 2020",'B');
-        Course course5 = new Course("CECS 476",3,"Complete","Spring 2020",'A');
-        Course course6 = new Course("ENGR 361",3,"Complete","Spring 2020",'A');
-        Course course7 = new Course("CECS 474",3,"Complete","Spring 2020",'B');
-        Course course8 = new Course("CECS 475",3,"Complete","Spring 2020",'B');
-        Course course9 = new Course("CECS 342",3,"Complete","Spring 2020",'B');
+        /** Hard coded Courses for testing/debugging. Will remove when we're able to persist data to DB */
+        Course course1 = new Course("CECS 445",3,"In Progress","Spring 2021");
+        Course course2 = new Course("CECS 491B",3,"In Progress","Spring 2021");
+        Course course3 = new Course("CECS 378",3,"In Progress","Spring 2021");
+        Course course4 = new Course("CECS 453",3,"In Progress","Spring 2021");
+        Course course5 = new Course("CECS 475",3,"Complete","Fall 2020",'A');
+        Course course6 = new Course("ENGR 361",3,"Complete","Fall 2020",'B');
+        Course course7 = new Course("CECS 451",3,"Planned","Spring 2020");
+        Course course8 = new Course("CECS 475",3,"Planned","Spring 2020");
+        Course course9 = new Course("CECS 342",3,"Planned","Spring 2020");
 
         courses = new ArrayList<>();
 
@@ -71,7 +71,7 @@ public class DegreeTrackerActivity extends AppCompatActivity {
     }
 
     /**
-     * Opens AddNewCourse Activity when user clicks AddNewCourse Button. Retrieves new Course returned and adds to Course list
+     * Starts AddNewCourse Activity when user clicks AddNewCourse Button. Retrieves new Course returned and adds to Course list
      * @param view
      */
     public void startAddNewCourse(View view){
@@ -84,7 +84,7 @@ public class DegreeTrackerActivity extends AppCompatActivity {
     }
 
     /**
-     * Opens ViewAllCoursesActivity when user clicks AllCourses Button
+     * Starts ViewAllCoursesActivity when user clicks AllCourses Button
      * @param view
      */
     public void startAllCourses(View view) {
