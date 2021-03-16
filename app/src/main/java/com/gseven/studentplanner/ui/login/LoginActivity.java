@@ -187,7 +187,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         // TODO: Hide sign-in button
-        // updateUiWithUser(account.getDisplayName());
+
+        try {
+            updateUiWithUser(account.getDisplayName());
+        } catch (NullPointerException e) {
+            // User has not signed in with a google account
+        }
+
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
