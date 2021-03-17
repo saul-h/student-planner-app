@@ -44,6 +44,20 @@ public class MainMenuActivity extends AppCompatActivity {
             }
 
         });
+
+
+        /**
+         *  Method below controls the click listener set on the todo list button
+         *  Launches the to do list activity when clicked
+         *  Called : NotesMainActivity
+         */
+        todo_list_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), NotesMainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     //Override the default OptionsMenu with option_menu.xml
