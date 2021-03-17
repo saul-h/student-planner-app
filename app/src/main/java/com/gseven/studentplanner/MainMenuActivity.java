@@ -2,6 +2,8 @@ package com.gseven.studentplanner;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -34,6 +36,7 @@ public class MainMenuActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), GoalTrackerActivity.class);
                 startActivity(intent);
             }
+
         });
 
 
@@ -49,5 +52,12 @@ public class MainMenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.option_menu,menu);
+        return true;
     }
 }
