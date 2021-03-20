@@ -1,18 +1,22 @@
 package com.gseven.studentplanner;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
 import com.gseven.studentplanner.data.model.Course;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Main activity for the Degree Tracker module.
@@ -26,6 +30,7 @@ public class DegreeTrackerActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,14 +38,14 @@ public class DegreeTrackerActivity extends AppCompatActivity {
 
         /** Hard coded Courses for testing/debugging. Will remove when we're able to persist data to DB */
         Course course1 = new Course("CECS 445",3,"In Progress","Spring 2021");
-        Course course2 = new Course("CECS 491B",3,"In Progress","Spring 2021");
+        Course course2 = new Course("CECS 491",3,"In Progress","Spring 2021");
         Course course3 = new Course("CECS 378",3,"In Progress","Spring 2021");
         Course course4 = new Course("CECS 453",3,"In Progress","Spring 2021");
         Course course5 = new Course("CECS 475",3,"Complete","Fall 2020",'A');
         Course course6 = new Course("ENGR 361",3,"Complete","Fall 2020",'B');
-        Course course7 = new Course("CECS 451",3,"Planned","Spring 2020");
-        Course course8 = new Course("CECS 475",3,"Planned","Spring 2020");
-        Course course9 = new Course("CECS 342",3,"Planned","Spring 2020");
+        Course course7 = new Course("CECS 451",3,"Planned","Fall 2022");
+        Course course8 = new Course("CECS 478",3,"Planned","Fall 2022");
+        Course course9 = new Course("CECS 342",3,"Planned","Fall 2022");
 
         courses = new ArrayList<>();
 
@@ -54,6 +59,12 @@ public class DegreeTrackerActivity extends AppCompatActivity {
         courses.add(course8);
         courses.add(course9);
 
+        /** filter to display only courses that are NOT completed */
+        List<Course> remainingCourses = courses
+                                        .stream()
+                                        .filter(course -> !course.getStatus().equals("Complete"))
+                                        .collect(Collectors.toList());
+
 
         /** Create and initialize the RecyclerView and RecyclerView properties */
         recyclerView = findViewById(R.id.recyclerView_degreeTracker);
@@ -62,7 +73,7 @@ public class DegreeTrackerActivity extends AppCompatActivity {
 
         recyclerView.addItemDecoration(divider);
 
-        DegreeTrackerRecyclerViewAdapter adapter = new DegreeTrackerRecyclerViewAdapter(this, courses);
+        DegreeTrackerRecyclerViewAdapter adapter = new DegreeTrackerRecyclerViewAdapter(this, remainingCourses);
 
         recyclerView.setAdapter(adapter);
 
@@ -89,9 +100,18 @@ public class DegreeTrackerActivity extends AppCompatActivity {
      */
     public void startAllCourses(View view) {
 
+
+        /** add bundle to intent to pass List of Course to ViewAllCoursesActivity*/
+
         Intent intent = new Intent(this, ViewAllCoursesActivity.class);
 
-        //TODO: populate intent with list of Course to be displayed in the ViewAllCourses Activity
+        Bundle bundle = new Bundle();
+
+        bundle.putSerializable("ALLCOURSES",(Serializable) this.courses);
+
+        intent.putExtras(bundle);
+
+
 
         startActivity(intent);
 
