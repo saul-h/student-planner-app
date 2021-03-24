@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentPlanner">
 
-        <activity android:name=".EditNotesActivity"></activity>
+        <activity android:name=".EditNotesActivity" />
 
         <activity android:name=".NotesMainActivity" />
 
