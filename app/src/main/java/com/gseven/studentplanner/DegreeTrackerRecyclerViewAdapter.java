@@ -48,8 +48,8 @@ public class DegreeTrackerRecyclerViewAdapter extends RecyclerView.Adapter<Degre
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Toast toast = Toast.makeText(context, "Selected: " + courses.get(position).getCourseName(), Toast.LENGTH_SHORT);
+                // Display toast to screen when user clicks on Course in remaining Course list. Displays projected completion semester
+                Toast toast = Toast.makeText(context, "Projected Completion: " + courses.get(position).getSemester(), Toast.LENGTH_SHORT);
 
                 toast.show();
 
