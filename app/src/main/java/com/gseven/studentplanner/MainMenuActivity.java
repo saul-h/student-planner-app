@@ -68,14 +68,12 @@ public class MainMenuActivity extends AppCompatActivity {
         return true;
     }
 
-    /*
+    /**
+     * Set on click listener to the profile button on the main menu activity
+     * Launches the edit profile activity when clicked
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        //final MenuItem edit_profile_button = findViewById(R.id.item1);
-
-       // edit_profile_button.setOnMenuItemClickListener(new View.OnClickListener(){}
-        //);
 
         switch(item.getItemId()){
             case R.id.item1:
@@ -88,5 +86,5 @@ public class MainMenuActivity extends AppCompatActivity {
 
         }
 
-    }*/
+    }
 }
