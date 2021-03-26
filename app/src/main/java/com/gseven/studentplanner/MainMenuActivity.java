@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.menu.MenuView;
 
-
 public class MainMenuActivity extends AppCompatActivity {
 
     @Override
@@ -45,6 +44,13 @@ public class MainMenuActivity extends AppCompatActivity {
 
         });
 
+        planner_button.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent = new Intent(getApplicationContext(), ViewPlanner.class);
+               startActivity(intent);
+           }
+        });
 
         /**
          *  Method below controls the click listener set on the todo list button
