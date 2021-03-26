@@ -1,85 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ViewPlanner">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_zoom"
-        tools:layout_editor_absoluteX="324dp"
-        tools:layout_editor_absoluteY="399dp" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_zoom"
-        tools:layout_editor_absoluteX="324dp"
-        tools:layout_editor_absoluteY="455dp" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="137dp"
+        android:layout_marginLeft="137dp"
+        android:layout_marginTop="406dp"
+        android:layout_marginEnd="138dp"
+        android:layout_marginRight="138dp" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home"
-        tools:layout_editor_absoluteX="287dp"
-        tools:layout_editor_absoluteY="614dp" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="159dp"
+        android:layout_marginLeft="159dp"
+        android:layout_marginEnd="159dp"
+        android:layout_marginRight="159dp"
+        android:layout_marginBottom="59dp"
+        android:text="Home" />
 
     <CalendarView
-        android:id="@+id/calendarView2"
+        android:id="@+id/calendarView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="39dp" />
-
-    <CheckedTextView
-        android:id="@+id/checkedTextView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="event3ofday"
-        android:textSize="30sp"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="535dp" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_zoom"
-        tools:layout_editor_absoluteX="324dp"
-        tools:layout_editor_absoluteY="519dp" />
-
-    <CheckedTextView
-        android:id="@+id/checkedTextView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="eventofday"
-        android:textSize="30sp"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="415dp" />
-
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="See more events"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="614dp" />
-
-    <CheckedTextView
-        android:id="@+id/checkedTextView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="event2ofday"
-        android:textSize="30sp"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="471dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="31dp"
+        android:layout_marginRight="31dp"
+        android:layout_marginBottom="359dp" />
+</RelativeLayout>
