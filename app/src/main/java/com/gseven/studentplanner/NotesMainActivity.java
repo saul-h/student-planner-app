@@ -68,14 +68,20 @@ public class NotesMainActivity extends AppCompatActivity {
                 editTextHeading.setText("");
             }
         });
+
+        // TODO: issue is with launching my intent here
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = listView.getItemAtPosition(position).toString();
-                Intent intent = new Intent(getApplicationContext(), Note.class);
+
+                // changed this to let new data persist
+                Intent intent = new Intent(getApplicationContext(), EditNotesActivity.class);
                 intent.putExtra(EXTRA_MESSAGE, item);
                 startActivity(intent);
             }
         });
+
+
     }
 }
