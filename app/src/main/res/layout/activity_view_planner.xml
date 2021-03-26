@@ -1,65 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ViewPlanner">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_zoom"
-        tools:layout_editor_absoluteX="324dp"
-        tools:layout_editor_absoluteY="519dp" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_zoom"
-        tools:layout_editor_absoluteX="324dp"
-        tools:layout_editor_absoluteY="455dp" />
-
-    <CheckedTextView
-        android:id="@+id/checkedTextView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="event2ofday"
-        android:textSize="30sp"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="471dp" />
-
-    <CheckedTextView
-        android:id="@+id/checkedTextView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="event3ofday"
-        android:textSize="30sp"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="535dp" />
-
-    <CheckedTextView
-        android:id="@+id/checkedTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="eventofday"
-        android:textSize="30sp"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="415dp" />
-
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="39dp" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/floatingActionButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -67,20 +15,71 @@
         tools:layout_editor_absoluteX="324dp"
         tools:layout_editor_absoluteY="399dp" />
 
-    <Button
-        android:id="@+id/button"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="See more events"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="614dp" />
+        android:clickable="true"
+        app:srcCompat="@android:drawable/ic_menu_zoom"
+        tools:layout_editor_absoluteX="324dp"
+        tools:layout_editor_absoluteY="455dp" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/button7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Home"
         tools:layout_editor_absoluteX="287dp"
         tools:layout_editor_absoluteY="614dp" />
 
+    <CalendarView
+        android:id="@+id/calendarView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="39dp" />
+
+    <CheckedTextView
+        android:id="@+id/checkedTextView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="event3ofday"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="535dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:srcCompat="@android:drawable/ic_menu_zoom"
+        tools:layout_editor_absoluteX="324dp"
+        tools:layout_editor_absoluteY="519dp" />
+
+    <CheckedTextView
+        android:id="@+id/checkedTextView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="eventofday"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="415dp" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="See more events"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="614dp" />
+
+    <CheckedTextView
+        android:id="@+id/checkedTextView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="event2ofday"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="471dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
