@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.gseven.studentplanner.data.model.Course;
 
@@ -21,22 +23,36 @@ import java.util.List;
  * Displays total counts for all Course statuses
  * Navigates to EditCourseActivity to update course information
  */
+
 public class ViewAllCoursesActivity extends AppCompatActivity {
 
 
     private List<Course> allCourses;
     RecyclerView recyclerView;
 
+    private TextView completedCount;
+    private TextView progressCount;
+    private TextView plannedCount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_all_courses);
 
+
+        this.completedCount = findViewById(R.id.txt_completedCount);
+        this.progressCount = findViewById(R.id.txt_progressCount);
+        this.plannedCount = findViewById(R.id.txt_plannedCount);
+
         /** Retrieve all courses sent from DegreeTrackerActivty */
         Bundle bundle = getIntent().getExtras();
 
         /** set Course list to value passed in from bundle */
-        List<Course> allCourses = (ArrayList<Course>) bundle.getSerializable("ALLCOURSES");
+        allCourses = (ArrayList<Course>) bundle.getSerializable("ALLCOURSES");
+
+
+        /** Set UI TextViews to display course counts*/
+        courseCountTotals();
 
         /** Create and initialize the RecyclerView and RecyclerView properties */
         recyclerView = findViewById(R.id.recyclerView_allCourses);
@@ -50,7 +66,6 @@ public class ViewAllCoursesActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
 
     }
 
@@ -68,4 +83,33 @@ public class ViewAllCoursesActivity extends AppCompatActivity {
         // TODO: Add Course to intent and pass to EditCourse. Retrieve returned Course and update Course list
 
     }
+
+    /**
+     * Updates the UI with the current course status count totals for all courses
+     */
+    public void courseCountTotals(){
+
+        int[] statusCounts = new int[3];
+
+        for(Course course : this.allCourses){
+            if(course.getStatus().equals("Complete")){
+                statusCounts[0]++;
+            }
+            else if (course.getStatus().equals("In Progress")){
+                statusCounts[1]++;
+            }
+            else{
+                statusCounts[2]++;
+            }
+        }
+
+        this.completedCount.setText("Courses Completed: " + statusCounts[0]);
+        this.progressCount.setText("Courses In Progress: " + statusCounts[1]);
+        this.plannedCount.setText("Courses Planned: " + statusCounts[2]);
+
+
+    }
+
+
 }
+
