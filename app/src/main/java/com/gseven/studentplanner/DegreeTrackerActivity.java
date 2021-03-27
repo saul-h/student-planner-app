@@ -30,10 +30,10 @@ import java.util.stream.Collectors;
 public class DegreeTrackerActivity extends AppCompatActivity {
 
 
+    private static final String TAG = "DEGREE_TRACKER_ACTIVITY";
     static int LAUNCH_ADD_NEW_COURSE = 1;
 
-    private static Bundle mBundleRecyclerViewState;
-    private final String KEY_RECYCLER_STATE = "recycler_state";
+
 
     private List<Course> courses;
     private List<Course> remainingCourses;
@@ -153,6 +153,36 @@ public class DegreeTrackerActivity extends AppCompatActivity {
 
         startActivity(intent);
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart() called");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause() called");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume() called");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop() called");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy() called");
     }
 
   
