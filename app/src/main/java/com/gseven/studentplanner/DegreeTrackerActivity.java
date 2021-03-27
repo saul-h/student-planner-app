@@ -1,14 +1,18 @@
 package com.gseven.studentplanner;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 
 import com.gseven.studentplanner.data.model.Course;
@@ -26,9 +30,16 @@ import java.util.stream.Collectors;
 public class DegreeTrackerActivity extends AppCompatActivity {
 
 
+    private static final String TAG = "DEGREE_TRACKER_ACTIVITY";
+    static int LAUNCH_ADD_NEW_COURSE = 1;
+
+
+
     private List<Course> courses;
+    private List<Course> remainingCourses;
 
     RecyclerView recyclerView;
+    DegreeTrackerRecyclerViewAdapter adapter;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -60,10 +71,9 @@ public class DegreeTrackerActivity extends AppCompatActivity {
         courses.add(course9);
 
         /** filter to display only courses that are NOT completed */
-        List<Course> remainingCourses = courses
-                                        .stream()
-                                        .filter(course -> !course.getStatus().equals("Complete"))
-                                        .collect(Collectors.toList());
+        remainingCourses = courses.stream()
+                                .filter(course -> !course.getStatus().equals("Complete"))
+                                .collect(Collectors.toList());
 
 
         /** Create and initialize the RecyclerView and RecyclerView properties */
@@ -73,7 +83,7 @@ public class DegreeTrackerActivity extends AppCompatActivity {
 
         recyclerView.addItemDecoration(divider);
 
-        DegreeTrackerRecyclerViewAdapter adapter = new DegreeTrackerRecyclerViewAdapter(this, remainingCourses);
+        adapter = new DegreeTrackerRecyclerViewAdapter(this, remainingCourses);
 
         recyclerView.setAdapter(adapter);
 
@@ -86,12 +96,42 @@ public class DegreeTrackerActivity extends AppCompatActivity {
      * @param view
      */
     public void startAddNewCourse(View view){
+
         Intent intent = new Intent(this, AddNewCourseActivity.class);
 
 
-        startActivity(intent);
+        startActivityForResult(intent, LAUNCH_ADD_NEW_COURSE);
 
-        //TODO: Retrieve the returned Course from AddNewCourse intent and update/populate the student's list of Courses
+    }
+
+    /**
+     * Handler for adding new course
+     * @param requestCode Unique code specific for handling add new course intent event
+     * @param resultCode status code indicating if new course creation is successful
+     * @param data Newly created Course to be added to Course list
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == LAUNCH_ADD_NEW_COURSE){
+            if(resultCode == Activity.RESULT_OK){
+
+                Course newCourse = (Course)data.getSerializableExtra("NEWCOURSE");
+
+                /** Check if Course is not completed */
+                if(!newCourse.getStatus().equals("Complete")){
+                    this.remainingCourses.add(newCourse);
+                    adapter.notifyDataSetChanged();
+                }
+
+                this.courses.add(newCourse);
+
+
+            }
+        }
+
+
     }
 
     /**
@@ -111,10 +151,39 @@ public class DegreeTrackerActivity extends AppCompatActivity {
 
         intent.putExtras(bundle);
 
-
-
         startActivity(intent);
 
-
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart() called");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause() called");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume() called");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop() called");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy() called");
+    }
+
+  
 }

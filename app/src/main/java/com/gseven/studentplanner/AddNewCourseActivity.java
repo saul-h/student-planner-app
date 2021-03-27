@@ -4,20 +4,47 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.gseven.studentplanner.data.model.Course;
 
 
 /**
  * AddNewCourseActivity
  * Form that allows user to enter new Course information they wish to add to their existing list of Courses
  */
+
 public class AddNewCourseActivity extends AppCompatActivity {
+
+   int LAUNCH_ADD_NEW_COURSE = 1;
+
+   private EditText courseName;
+   private EditText gradeReceived;
+   private EditText semester;
+   private EditText units;
+
+   private RadioGroup radioGroup;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_course);
+
+        this.courseName = findViewById(R.id.editText_course);
+        this.gradeReceived = findViewById(R.id.editText_grade);
+        this.semester = findViewById(R.id.editText_semester);
+        this.units = findViewById(R.id.editText_units);
+        this.radioGroup = findViewById(R.id.radio_group);
+
+
+
     }
 
     /**
@@ -26,13 +53,37 @@ public class AddNewCourseActivity extends AppCompatActivity {
      */
     public void addNewCourse(View view) {
 
-        Toast toast = Toast.makeText(this,"AddNewCourse Button pressed!", Toast.LENGTH_SHORT);
+        String name = this.courseName.getText().toString();
+        String semester = this.semester.getText().toString();
+        int units = Integer.parseInt(this.units.getText().toString());
+        char grade;
+
+        if (this.gradeReceived.getText().toString().equals("") || this.gradeReceived.getText() == null){
+            grade = '\0';
+        }
+        else{
+            grade = this.gradeReceived.getText().toString().toUpperCase().charAt(0);
+        }
+
+        int selectedRadioButtonId = radioGroup.getCheckedRadioButtonId();
+
+        RadioButton selectedRadioButton = findViewById(selectedRadioButtonId);
+
+        String status = selectedRadioButton.getText().toString();
+
+        Course course = new Course(name,units,status,semester,grade);
+
+
+        Intent intent = new Intent();
+
+        intent.putExtra("NEWCOURSE",course);
+
+        setResult(AppCompatActivity.RESULT_OK, intent);
+
+        finish();
+
+        Toast toast = Toast.makeText(this,"New Course: " + course.getCourseName() + " successfully added!", Toast.LENGTH_SHORT);
         toast.show();
-
-        //TODO: 1.) Create Course with fields from AddNewCourse Activity
-        //TODO: 2.) Add Course to Student list of Courses
-        //TODO: 3.) Update RecyclerView if needed
-
     }
 
     /**
@@ -40,9 +91,15 @@ public class AddNewCourseActivity extends AppCompatActivity {
      * @param view
      */
     public void clearAllFields(View view) {
-        Toast toast = Toast.makeText(this, "ClearButton pressed!", Toast.LENGTH_LONG);
+
+        this.courseName.setText("");
+        this.gradeReceived.setText("");
+        this.semester.setText("");
+        this.units.setText("");
+
+        Toast toast = Toast.makeText(this, "Fields cleared!", Toast.LENGTH_SHORT);
         toast.show();
 
-        //TODO: 1.) Set method to clear all form fields in AddNewCourse activity
+
     }
 }
