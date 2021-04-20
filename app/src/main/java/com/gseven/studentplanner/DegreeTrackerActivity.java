@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.gseven.studentplanner.data.model.Course;
 
@@ -32,14 +34,16 @@ public class DegreeTrackerActivity extends AppCompatActivity {
 
     private static final String TAG = "DEGREE_TRACKER_ACTIVITY";
     static int LAUNCH_ADD_NEW_COURSE = 1;
-
-
+    static int LAUNCH_EDIT_COURSE = 3;
 
     private List<Course> courses;
     private List<Course> remainingCourses;
 
     RecyclerView recyclerView;
     DegreeTrackerRecyclerViewAdapter adapter;
+
+    private ProgressBar progressBar;
+    private TextView completionPercentText;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -89,6 +93,13 @@ public class DegreeTrackerActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        completionPercentText = findViewById(R.id.txt_progBarHeader);
+
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setMax(100);
+
+        updateCompletedCourseRatio();
+
     }
 
     /**
@@ -96,12 +107,9 @@ public class DegreeTrackerActivity extends AppCompatActivity {
      * @param view
      */
     public void startAddNewCourse(View view){
-
         Intent intent = new Intent(this, AddNewCourseActivity.class);
 
-
         startActivityForResult(intent, LAUNCH_ADD_NEW_COURSE);
-
     }
 
     /**
@@ -110,6 +118,7 @@ public class DegreeTrackerActivity extends AppCompatActivity {
      * @param resultCode status code indicating if new course creation is successful
      * @param data Newly created Course to be added to Course list
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -127,11 +136,25 @@ public class DegreeTrackerActivity extends AppCompatActivity {
 
                 this.courses.add(newCourse);
 
+                updateCompletedCourseRatio();
+
 
             }
         }
+        else if(requestCode == this.LAUNCH_EDIT_COURSE){
+            if(resultCode == Activity.RESULT_OK){
 
+                Course newCourse = (Course)data.getSerializableExtra("UPDATED_COURSE_LIST");
 
+                /** Check if Course is not completed */
+                if(!newCourse.getStatus().equals("Complete")){
+                    this.remainingCourses.add(newCourse);
+                    adapter.notifyDataSetChanged();
+                }
+
+                this.courses.add(newCourse);
+            }
+        }
     }
 
     /**
@@ -151,9 +174,33 @@ public class DegreeTrackerActivity extends AppCompatActivity {
 
         intent.putExtras(bundle);
 
-        startActivity(intent);
+        startActivityForResult(intent, this.LAUNCH_EDIT_COURSE);
 
     }
+
+    /**
+     * Updates the current course completion displayed on the Progress Bar
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void updateCompletedCourseRatio(){
+
+        /** filter to display only courses that are NOT completed */
+        List<Course> completedCourses = courses.stream()
+                .filter(course -> course.getStatus().equals("Complete"))
+                .collect(Collectors.toList());
+
+
+        double ratio = ( (double)completedCourses.size() / this.courses.size());
+
+        int percentCompletion = (int)Math.floor(100.0 * ratio);
+
+        this.progressBar.setProgress( percentCompletion );
+        this.completionPercentText.setText(percentCompletion + "% Degree Completion");
+
+
+    }
+
+
 
     @Override
     public void onStart() {

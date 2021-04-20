@@ -16,7 +16,9 @@
         <activity
             android:name=".ViewAllCoursesActivity"
             android:parentActivityName=".DegreeTrackerActivity" />
-        <activity android:name=".EditCourseActivity" />
+        <activity
+            android:name=".EditCourseActivity"
+            android:parentActivityName=".ViewAllCoursesActivity" />
         <activity
             android:name=".AddNewCourseActivity"
             android:parentActivityName=".DegreeTrackerActivity" />

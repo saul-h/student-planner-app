@@ -1,6 +1,8 @@
 package com.gseven.studentplanner;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +55,19 @@ public class AllCoursesRecyclerViewAdapter extends RecyclerView.Adapter<AllCours
                 Toast toast = Toast.makeText(context, "Selected: " + allCourses.get(position).getCourseName(), Toast.LENGTH_SHORT);
 
                 toast.show();
+
+
+                Intent intent = new Intent(context,EditCourseActivity.class);
+
+                Course course = allCourses.get(position);
+
+                intent.putExtra("COURSE",course);
+
+
+
+                ((Activity)context).startActivityForResult(intent,ViewAllCoursesActivity.LAUNCH_ADD_EDIT_COURSE);
+
+
 
             }
         });

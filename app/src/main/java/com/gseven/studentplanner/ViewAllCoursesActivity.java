@@ -1,10 +1,12 @@
 package com.gseven.studentplanner;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 
 import com.gseven.studentplanner.data.model.Course;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +29,14 @@ import java.util.List;
 
 public class ViewAllCoursesActivity extends AppCompatActivity {
 
+    static int LAUNCH_ADD_EDIT_COURSE = 2;
+
 
     private List<Course> allCourses;
+
     RecyclerView recyclerView;
+
+    AllCoursesRecyclerViewAdapter adapter;
 
     private TextView completedCount;
     private TextView progressCount;
@@ -52,7 +60,7 @@ public class ViewAllCoursesActivity extends AppCompatActivity {
 
 
         /** Set UI TextViews to display course counts*/
-        courseCountTotals();
+        updateCourseCountTotals();
 
         /** Create and initialize the RecyclerView and RecyclerView properties */
         recyclerView = findViewById(R.id.recyclerView_allCourses);
@@ -61,7 +69,7 @@ public class ViewAllCoursesActivity extends AppCompatActivity {
 
         recyclerView.addItemDecoration(divider);
 
-        AllCoursesRecyclerViewAdapter adapter = new AllCoursesRecyclerViewAdapter(this, allCourses);
+        adapter = new AllCoursesRecyclerViewAdapter(this, allCourses);
 
         recyclerView.setAdapter(adapter);
 
@@ -75,6 +83,7 @@ public class ViewAllCoursesActivity extends AppCompatActivity {
      * @param view
      */
     public void startEditCourse(View view) {
+
         Intent intent = new Intent(this,EditCourseActivity.class);
 
 
@@ -84,10 +93,60 @@ public class ViewAllCoursesActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.d("DEBUG_VIEWALLCOURSES","ENTERED ONRESULT");
+
+        if(requestCode == this.LAUNCH_ADD_EDIT_COURSE){
+            if(resultCode == Activity.RESULT_OK){
+
+                Course updatedCourse = (Course)data.getSerializableExtra("UPDATED_COURSE");
+
+                String action = data.getStringExtra("KEY");
+
+
+                if(action.equals("UPDATE")){
+
+                    int index = this.allCourses.indexOf(updatedCourse);
+
+                    this.allCourses.set(index,updatedCourse);
+
+                    adapter.notifyDataSetChanged();
+
+                    updateCourseCountTotals();
+
+                    Log.d("DEBUG_VIEWALLCOURSES", "UPDATED VALUE: " +this.allCourses.get(index).getSemester());
+                }
+                else if(action.equals("DELETE")){
+
+                    Log.d("DEBUG_VIEWALLCOURSES", "IN DELETE");
+
+                    int index = this.allCourses.indexOf(updatedCourse);
+
+                    this.allCourses.remove(index);
+                    adapter.notifyDataSetChanged();
+
+                    updateCourseCountTotals();
+
+                }
+
+            }
+            else{
+                Log.d("DEBUG_VIEWALLCOURSES", "NO COURSE EDITED");
+
+            }
+
+
+        }
+    }
+
+
     /**
      * Updates the UI with the current course status count totals for all courses
      */
-    public void courseCountTotals(){
+    public void updateCourseCountTotals(){
 
         int[] statusCounts = new int[3];
 
@@ -111,5 +170,9 @@ public class ViewAllCoursesActivity extends AppCompatActivity {
     }
 
 
+    public void startViewGPA(View view) {
+
+
+    }
 }
 

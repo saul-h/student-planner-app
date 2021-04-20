@@ -2,9 +2,16 @@ package com.gseven.studentplanner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import com.gseven.studentplanner.data.model.Course;
 
 /**
  * EditCourseActivity
@@ -12,10 +19,47 @@ import android.widget.Toast;
  */
 public class EditCourseActivity extends AppCompatActivity {
 
+    private EditText courseName;
+    private EditText gradeReceived;
+    private EditText semester;
+
+    private RadioGroup radioGroup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_course);
+
+        this.courseName = findViewById(R.id.editText_editName);
+        this.gradeReceived = findViewById(R.id.editText_editGrade);
+        this.semester = findViewById(R.id.editText_editSemester);
+        this.radioGroup = findViewById(R.id.radiogroup_edit);
+
+
+        Course receivedCourse = (Course)getIntent().getSerializableExtra("COURSE");
+
+        Log.d("C", "RECEIVED COURSE: " + receivedCourse.getCourseName());
+
+        this.courseName.setText(receivedCourse.getCourseName());
+        this.semester.setText(receivedCourse.getSemester());
+
+        if(receivedCourse.getGrade() == '\0'){
+            this.gradeReceived.setText("");
+        }
+        else {
+            this.gradeReceived.setText(String.valueOf(receivedCourse.getGrade()));
+        }
+
+        if(receivedCourse.getStatus().equals("Planned")){
+            ((RadioButton)this.radioGroup.getChildAt(0)).setChecked(true);
+        }
+        else if(receivedCourse.getStatus().equals("In Progress")){
+            ((RadioButton)this.radioGroup.getChildAt(1)).setChecked(true);
+        }
+        else{
+            ((RadioButton)this.radioGroup.getChildAt(2)).setChecked(true);
+        }
+
     }
 
     /**
@@ -24,12 +68,45 @@ public class EditCourseActivity extends AppCompatActivity {
      */
     public void updateCourse(View view) {
 
-        Toast toast = Toast.makeText(this,"UpdateCourse Button pressed!", Toast.LENGTH_LONG);
+        String name = this.courseName.getText().toString();
+        String semester = this.semester.getText().toString();
+
+        char grade;
+
+        if (this.gradeReceived.getText().toString().equals("") || this.gradeReceived.getText() == null){
+            grade = '\0';
+            Log.d("EDIT_COURSE", "GRADE EMPTY");
+        }
+        else{
+
+            grade = this.gradeReceived.getText().toString().toUpperCase().charAt(0);
+
+            String temp = this.gradeReceived.getText().toString();
+
+            Log.d("EDIT_COURSE", "GRADE NOT EMPTY ->" + temp);
+        }
+
+        int selectedRadioButtonId = radioGroup.getCheckedRadioButtonId();
+
+        RadioButton selectedRadioButton = findViewById(selectedRadioButtonId);
+
+        String status = selectedRadioButton.getText().toString();
+
+        Course course = new Course(name,3,status,semester,grade);
+
+        Intent intent = new Intent();
+
+        intent.putExtra("UPDATED_COURSE",course);
+
+        intent.putExtra("KEY","UPDATE");
+
+        setResult(AppCompatActivity.RESULT_OK, intent);
+
+        Toast toast = Toast.makeText(this,"Course: " + name +" updated!", Toast.LENGTH_SHORT);
+
         toast.show();
 
-        //TODO: 1.) Update the given Course based on user submitted fields in UpdateCourseActivity form
-        //TODO: 2.) Update the Student list of Courses to replace the old Course with updated version of Course
-        //TODO: 2.) Notify user the course was successfully updated
+        finish();
 
     }
 
@@ -39,11 +116,40 @@ public class EditCourseActivity extends AppCompatActivity {
      */
     public void deleteCourse(View view) {
 
-        Toast toast = Toast.makeText(this,"DeleteCourse Button pressed!", Toast.LENGTH_LONG);
+
+
+        String name = this.courseName.getText().toString();
+        String semester = this.semester.getText().toString();
+
+        char grade;
+
+        if (this.gradeReceived.getText().toString().equals("") || this.gradeReceived.getText() == null){
+            grade = '\0';
+        }
+        else{
+            grade = this.gradeReceived.getText().toString().toUpperCase().charAt(0);
+        }
+
+        int selectedRadioButtonId = radioGroup.getCheckedRadioButtonId();
+
+        RadioButton selectedRadioButton = findViewById(selectedRadioButtonId);
+
+        String status = selectedRadioButton.getText().toString();
+
+        Course course = new Course(name,3,status,semester,grade);
+
+        Intent intent = new Intent();
+
+        intent.putExtra("UPDATED_COURSE",course);
+
+        intent.putExtra("KEY","DELETE");
+
+        setResult(AppCompatActivity.RESULT_OK, intent);
+
+        Toast toast = Toast.makeText(this,"Removed Course: " + course.getCourseName(), Toast.LENGTH_SHORT);
         toast.show();
 
-        //TODO: 1.) Remove Course from Student list of Courses
-        //TODO: 2.) Notify user removed course was successful
+        finish();
 
     }
 }

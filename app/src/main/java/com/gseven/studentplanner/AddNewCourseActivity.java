@@ -56,6 +56,7 @@ public class AddNewCourseActivity extends AppCompatActivity {
         String name = this.courseName.getText().toString();
         String semester = this.semester.getText().toString();
         int units = Integer.parseInt(this.units.getText().toString());
+
         char grade;
 
         if (this.gradeReceived.getText().toString().equals("") || this.gradeReceived.getText() == null){
