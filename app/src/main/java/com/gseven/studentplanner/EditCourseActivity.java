@@ -1,6 +1,7 @@
 package com.gseven.studentplanner;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.gseven.studentplanner.data.model.Course;
+import com.gseven.studentplanner.database.CourseDAO;
+import com.gseven.studentplanner.database.StudentPlannerDatabase;
 
 /**
  * EditCourseActivity
@@ -38,9 +41,9 @@ public class EditCourseActivity extends AppCompatActivity {
 
         Course receivedCourse = (Course)getIntent().getSerializableExtra("COURSE");
 
-        Log.d("C", "RECEIVED COURSE: " + receivedCourse.getCourseName());
-
         this.courseName.setText(receivedCourse.getCourseName());
+        this.courseName.setFocusable(false);
+        this.courseName.setEnabled(false);
         this.semester.setText(receivedCourse.getSemester());
 
         if(receivedCourse.getGrade() == '\0'){
@@ -94,13 +97,19 @@ public class EditCourseActivity extends AppCompatActivity {
 
         Course course = new Course(name,3,status,semester,grade);
 
+        StudentPlannerDatabase db = Room.databaseBuilder(getApplicationContext(),
+                StudentPlannerDatabase.class,
+                "studentplanner-database")
+                .allowMainThreadQueries().build();
+
+        CourseDAO courseDAO = db.courseDao();
+
+        courseDAO.updateCourses(course);
+
         Intent intent = new Intent();
 
-        intent.putExtra("UPDATED_COURSE",course);
 
-        intent.putExtra("KEY","UPDATE");
-
-        setResult(AppCompatActivity.RESULT_OK, intent);
+        setResult(AppCompatActivity.RESULT_OK);
 
         Toast toast = Toast.makeText(this,"Course: " + name +" updated!", Toast.LENGTH_SHORT);
 
@@ -138,13 +147,18 @@ public class EditCourseActivity extends AppCompatActivity {
 
         Course course = new Course(name,3,status,semester,grade);
 
+        StudentPlannerDatabase db = Room.databaseBuilder(getApplicationContext(),
+                StudentPlannerDatabase.class,
+                "studentplanner-database")
+                .allowMainThreadQueries().build();
+
+        CourseDAO courseDAO = db.courseDao();
+
+        courseDAO.deleteCourses(course);
+
         Intent intent = new Intent();
 
-        intent.putExtra("UPDATED_COURSE",course);
-
-        intent.putExtra("KEY","DELETE");
-
-        setResult(AppCompatActivity.RESULT_OK, intent);
+        setResult(AppCompatActivity.RESULT_OK);
 
         Toast toast = Toast.makeText(this,"Removed Course: " + course.getCourseName(), Toast.LENGTH_SHORT);
         toast.show();

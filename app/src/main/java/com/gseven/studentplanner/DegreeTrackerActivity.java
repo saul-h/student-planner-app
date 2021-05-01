@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.icu.text.LocaleDisplayNames;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -18,6 +20,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.gseven.studentplanner.data.model.Course;
+import com.gseven.studentplanner.database.CourseDAO;
+import com.gseven.studentplanner.database.StudentPlannerDatabase;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -51,28 +55,14 @@ public class DegreeTrackerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_degree_tracker);
 
-        /** Hard coded Courses for testing/debugging. Will remove when we're able to persist data to DB */
-        Course course1 = new Course("CECS 445",3,"In Progress","Spring 2021");
-        Course course2 = new Course("CECS 491",3,"In Progress","Spring 2021");
-        Course course3 = new Course("CECS 378",3,"In Progress","Spring 2021");
-        Course course4 = new Course("CECS 453",3,"In Progress","Spring 2021");
-        Course course5 = new Course("CECS 475",3,"Complete","Fall 2020",'A');
-        Course course6 = new Course("ENGR 361",3,"Complete","Fall 2020",'B');
-        Course course7 = new Course("CECS 451",3,"Planned","Fall 2022");
-        Course course8 = new Course("CECS 478",3,"Planned","Fall 2022");
-        Course course9 = new Course("CECS 342",3,"Planned","Fall 2022");
 
-        courses = new ArrayList<>();
+        StudentPlannerDatabase db = Room.databaseBuilder(getApplicationContext(),
+                StudentPlannerDatabase.class,
+                "studentplanner-database")
+                .allowMainThreadQueries().build();
 
-        courses.add(course1);
-        courses.add(course2);
-        courses.add(course3);
-        courses.add(course4);
-        courses.add(course5);
-        courses.add(course6);
-        courses.add(course7);
-        courses.add(course8);
-        courses.add(course9);
+        CourseDAO courseDAO = db.courseDao();
+        courses = courseDAO.getAll();
 
         /** filter to display only courses that are NOT completed */
         remainingCourses = courses.stream()
@@ -113,7 +103,7 @@ public class DegreeTrackerActivity extends AppCompatActivity {
     }
 
     /**
-     * Handler for adding new course
+     * Handler for adding and editing a  Course
      * @param requestCode Unique code specific for handling add new course intent event
      * @param resultCode status code indicating if new course creation is successful
      * @param data Newly created Course to be added to Course list
@@ -126,33 +116,27 @@ public class DegreeTrackerActivity extends AppCompatActivity {
         if(requestCode == LAUNCH_ADD_NEW_COURSE){
             if(resultCode == Activity.RESULT_OK){
 
-                Course newCourse = (Course)data.getSerializableExtra("NEWCOURSE");
+                StudentPlannerDatabase db = Room.databaseBuilder(getApplicationContext(),
+                        StudentPlannerDatabase.class,
+                        "studentplanner-database")
+                        .allowMainThreadQueries().build();
 
-                /** Check if Course is not completed */
-                if(!newCourse.getStatus().equals("Complete")){
-                    this.remainingCourses.add(newCourse);
-                    adapter.notifyDataSetChanged();
-                }
+                CourseDAO courseDAO = db.courseDao();
+                List<Course> updatedCourses = courseDAO.getAll();
 
-                this.courses.add(newCourse);
+                this.courses.clear();
+                this.courses.addAll(updatedCourses);
+
+                List<Course> tempRemainingCourses = this.courses.stream()
+                                                    .filter(course -> !course.getStatus().equals("Complete"))
+                                                    .collect(Collectors.toList());
+
+                this.remainingCourses.clear();
+                this.remainingCourses.addAll(tempRemainingCourses);
+                this.adapter.notifyDataSetChanged();
 
                 updateCompletedCourseRatio();
 
-
-            }
-        }
-        else if(requestCode == this.LAUNCH_EDIT_COURSE){
-            if(resultCode == Activity.RESULT_OK){
-
-                Course newCourse = (Course)data.getSerializableExtra("UPDATED_COURSE_LIST");
-
-                /** Check if Course is not completed */
-                if(!newCourse.getStatus().equals("Complete")){
-                    this.remainingCourses.add(newCourse);
-                    adapter.notifyDataSetChanged();
-                }
-
-                this.courses.add(newCourse);
             }
         }
     }
@@ -163,18 +147,9 @@ public class DegreeTrackerActivity extends AppCompatActivity {
      */
     public void startAllCourses(View view) {
 
-
-        /** add bundle to intent to pass List of Course to ViewAllCoursesActivity*/
-
         Intent intent = new Intent(this, ViewAllCoursesActivity.class);
 
-        Bundle bundle = new Bundle();
-
-        bundle.putSerializable("ALLCOURSES",(Serializable) this.courses);
-
-        intent.putExtras(bundle);
-
-        startActivityForResult(intent, this.LAUNCH_EDIT_COURSE);
+        startActivity(intent);
 
     }
 
@@ -214,10 +189,32 @@ public class DegreeTrackerActivity extends AppCompatActivity {
         Log.d(TAG, "onPause() called");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onResume() {
         super.onResume();
         Log.d(TAG, "onResume() called");
+
+        StudentPlannerDatabase db = Room.databaseBuilder(getApplicationContext(),
+                StudentPlannerDatabase.class,
+                "studentplanner-database")
+                .allowMainThreadQueries().build();
+
+        CourseDAO courseDAO = db.courseDao();
+        List<Course> updatedCourses = courseDAO.getAll();
+
+        this.courses.clear();
+        this.courses.addAll(updatedCourses);
+
+        List<Course> tempRemainingCourses = this.courses.stream()
+                .filter(course -> !course.getStatus().equals("Complete"))
+                .collect(Collectors.toList());
+
+        this.remainingCourses.clear();
+        this.remainingCourses.addAll(tempRemainingCourses);
+        this.adapter.notifyDataSetChanged();
+
+        updateCompletedCourseRatio();
     }
 
     @Override

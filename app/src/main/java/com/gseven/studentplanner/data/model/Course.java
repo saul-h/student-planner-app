@@ -1,13 +1,22 @@
 package com.gseven.studentplanner.data.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 
 
 /**
  * Course model class used to store Courses information for User
  */
+@Entity
 public class Course implements Serializable {
-
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "course_name")
     private String courseName;
     private int units;
     private String status;
@@ -37,6 +46,7 @@ public class Course implements Serializable {
      * @param status Current status of Course
      * @param semester Semester Course is planned or completed
      */
+    @Ignore
     public Course(String courseName, int units, String status, String semester) {
         this.courseName = courseName;
         this.units = units;

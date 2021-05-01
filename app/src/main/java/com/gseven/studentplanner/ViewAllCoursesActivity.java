@@ -1,23 +1,30 @@
 package com.gseven.studentplanner;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.icu.text.LocaleDisplayNames;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.gseven.studentplanner.data.model.Course;
+import com.gseven.studentplanner.database.CourseDAO;
+import com.gseven.studentplanner.database.StudentPlannerDatabase;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -52,11 +59,13 @@ public class ViewAllCoursesActivity extends AppCompatActivity {
         this.progressCount = findViewById(R.id.txt_progressCount);
         this.plannedCount = findViewById(R.id.txt_plannedCount);
 
-        /** Retrieve all courses sent from DegreeTrackerActivty */
-        Bundle bundle = getIntent().getExtras();
+        StudentPlannerDatabase db = Room.databaseBuilder(getApplicationContext(),
+                StudentPlannerDatabase.class,
+                "studentplanner-database")
+                .allowMainThreadQueries().build();
 
-        /** set Course list to value passed in from bundle */
-        allCourses = (ArrayList<Course>) bundle.getSerializable("ALLCOURSES");
+        CourseDAO courseDAO = db.courseDao();
+        this.allCourses = courseDAO.getAll();
 
 
         /** Set UI TextViews to display course counts*/
@@ -97,48 +106,24 @@ public class ViewAllCoursesActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Log.d("DEBUG_VIEWALLCOURSES","ENTERED ONRESULT");
-
         if(requestCode == this.LAUNCH_ADD_EDIT_COURSE){
-            if(resultCode == Activity.RESULT_OK){
+            if(resultCode == Activity.RESULT_OK) {
 
-                Course updatedCourse = (Course)data.getSerializableExtra("UPDATED_COURSE");
+                Log.d("EDIT", "IN EDIT");
 
-                String action = data.getStringExtra("KEY");
+                StudentPlannerDatabase db = Room.databaseBuilder(getApplicationContext(),
+                        StudentPlannerDatabase.class,
+                        "studentplanner-database")
+                        .allowMainThreadQueries().build();
 
+                CourseDAO courseDAO = db.courseDao();
 
-                if(action.equals("UPDATE")){
+                this.allCourses.clear();
+                this.allCourses.addAll(courseDAO.getAll());
 
-                    int index = this.allCourses.indexOf(updatedCourse);
-
-                    this.allCourses.set(index,updatedCourse);
-
-                    adapter.notifyDataSetChanged();
-
-                    updateCourseCountTotals();
-
-                    Log.d("DEBUG_VIEWALLCOURSES", "UPDATED VALUE: " +this.allCourses.get(index).getSemester());
-                }
-                else if(action.equals("DELETE")){
-
-                    Log.d("DEBUG_VIEWALLCOURSES", "IN DELETE");
-
-                    int index = this.allCourses.indexOf(updatedCourse);
-
-                    this.allCourses.remove(index);
-                    adapter.notifyDataSetChanged();
-
-                    updateCourseCountTotals();
-
-                }
+                updateCourseCountTotals();
 
             }
-            else{
-                Log.d("DEBUG_VIEWALLCOURSES", "NO COURSE EDITED");
-
-            }
-
-
         }
     }
 
@@ -174,5 +159,32 @@ public class ViewAllCoursesActivity extends AppCompatActivity {
 
 
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        StudentPlannerDatabase db = Room.databaseBuilder(getApplicationContext(),
+                StudentPlannerDatabase.class,
+                "studentplanner-database")
+                .allowMainThreadQueries().build();
+
+        CourseDAO courseDAO = db.courseDao();
+        List<Course> updatedCourses = courseDAO.getAll();
+
+        this.allCourses.clear();
+        this.allCourses.addAll(updatedCourses);
+
+
+        this.adapter.notifyDataSetChanged();
+        this.updateCourseCountTotals();
+
+    }
+
+
+
+
+
 }
 

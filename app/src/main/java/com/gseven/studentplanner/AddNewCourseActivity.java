@@ -1,6 +1,9 @@
 package com.gseven.studentplanner;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
+import androidx.room.Database;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +15,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.gseven.studentplanner.data.model.Course;
+import com.gseven.studentplanner.database.CourseDAO;
+import com.gseven.studentplanner.database.StudentPlannerDatabase;
 
 
 /**
@@ -77,14 +83,26 @@ public class AddNewCourseActivity extends AppCompatActivity {
 
         Intent intent = new Intent();
 
-        intent.putExtra("NEWCOURSE",course);
 
-        setResult(AppCompatActivity.RESULT_OK, intent);
+        StudentPlannerDatabase db = Room.databaseBuilder(getApplicationContext(),
+                StudentPlannerDatabase.class,
+                "studentplanner-database")
+                .allowMainThreadQueries().build();
+
+        CourseDAO courseDAO = db.courseDao();
+        courseDAO.insertCourses(course);
+
+        setResult(AppCompatActivity.RESULT_OK);
 
         finish();
 
         Toast toast = Toast.makeText(this,"New Course: " + course.getCourseName() + " successfully added!", Toast.LENGTH_SHORT);
         toast.show();
+
+
+
+
+
     }
 
     /**
