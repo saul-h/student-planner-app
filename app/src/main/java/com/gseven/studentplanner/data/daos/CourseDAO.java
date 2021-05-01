@@ -1,4 +1,4 @@
-package com.gseven.studentplanner.database;
+package com.gseven.studentplanner.data.daos;
 
 import androidx.room.Dao;
 import androidx.room.Delete;

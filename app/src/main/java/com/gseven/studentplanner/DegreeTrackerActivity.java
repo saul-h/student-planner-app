@@ -10,21 +10,16 @@ import androidx.room.Room;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.icu.text.LocaleDisplayNames;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.gseven.studentplanner.data.database.AppDatabase;
 import com.gseven.studentplanner.data.model.Course;
-import com.gseven.studentplanner.database.CourseDAO;
-import com.gseven.studentplanner.database.StudentPlannerDatabase;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,7 +50,7 @@ public class DegreeTrackerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_degree_tracker);
 
-
+        /**
         StudentPlannerDatabase db = Room.databaseBuilder(getApplicationContext(),
                 StudentPlannerDatabase.class,
                 "studentplanner-database")
@@ -63,6 +58,10 @@ public class DegreeTrackerActivity extends AppCompatActivity {
 
         CourseDAO courseDAO = db.courseDao();
         courses = courseDAO.getAll();
+        **/
+
+        AppDatabase db = AppDatabase.getDBInstance(this.getApplicationContext());
+        courses = db.courseDao().getAll();
 
         /** filter to display only courses that are NOT completed */
         remainingCourses = courses.stream()
@@ -116,6 +115,7 @@ public class DegreeTrackerActivity extends AppCompatActivity {
         if(requestCode == LAUNCH_ADD_NEW_COURSE){
             if(resultCode == Activity.RESULT_OK){
 
+                /**
                 StudentPlannerDatabase db = Room.databaseBuilder(getApplicationContext(),
                         StudentPlannerDatabase.class,
                         "studentplanner-database")
@@ -123,6 +123,10 @@ public class DegreeTrackerActivity extends AppCompatActivity {
 
                 CourseDAO courseDAO = db.courseDao();
                 List<Course> updatedCourses = courseDAO.getAll();
+                **/
+
+                AppDatabase db = AppDatabase.getDBInstance(this.getApplicationContext());
+                List<Course> updatedCourses = db.courseDao().getAll();
 
                 this.courses.clear();
                 this.courses.addAll(updatedCourses);
@@ -195,6 +199,7 @@ public class DegreeTrackerActivity extends AppCompatActivity {
         super.onResume();
         Log.d(TAG, "onResume() called");
 
+        /**
         StudentPlannerDatabase db = Room.databaseBuilder(getApplicationContext(),
                 StudentPlannerDatabase.class,
                 "studentplanner-database")
@@ -202,6 +207,10 @@ public class DegreeTrackerActivity extends AppCompatActivity {
 
         CourseDAO courseDAO = db.courseDao();
         List<Course> updatedCourses = courseDAO.getAll();
+        */
+
+        AppDatabase db = AppDatabase.getDBInstance(this.getApplicationContext());
+        List<Course> updatedCourses = db.courseDao().getAll();
 
         this.courses.clear();
         this.courses.addAll(updatedCourses);

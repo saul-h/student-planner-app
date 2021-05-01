@@ -12,9 +12,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.gseven.studentplanner.data.database.AppDatabase;
 import com.gseven.studentplanner.data.model.Course;
-import com.gseven.studentplanner.database.CourseDAO;
-import com.gseven.studentplanner.database.StudentPlannerDatabase;
 
 /**
  * EditCourseActivity
@@ -97,6 +96,7 @@ public class EditCourseActivity extends AppCompatActivity {
 
         Course course = new Course(name,3,status,semester,grade);
 
+        /**
         StudentPlannerDatabase db = Room.databaseBuilder(getApplicationContext(),
                 StudentPlannerDatabase.class,
                 "studentplanner-database")
@@ -105,6 +105,11 @@ public class EditCourseActivity extends AppCompatActivity {
         CourseDAO courseDAO = db.courseDao();
 
         courseDAO.updateCourses(course);
+        */
+
+        AppDatabase db = AppDatabase.getDBInstance(this.getApplicationContext());
+
+        db.courseDao().updateCourses(course);
 
         Intent intent = new Intent();
 
@@ -147,6 +152,7 @@ public class EditCourseActivity extends AppCompatActivity {
 
         Course course = new Course(name,3,status,semester,grade);
 
+        /**
         StudentPlannerDatabase db = Room.databaseBuilder(getApplicationContext(),
                 StudentPlannerDatabase.class,
                 "studentplanner-database")
@@ -155,6 +161,10 @@ public class EditCourseActivity extends AppCompatActivity {
         CourseDAO courseDAO = db.courseDao();
 
         courseDAO.deleteCourses(course);
+        */
+
+        AppDatabase db = AppDatabase.getDBInstance(this.getApplicationContext());
+        db.courseDao().deleteCourses(course);
 
         Intent intent = new Intent();
 

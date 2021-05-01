@@ -10,21 +10,16 @@ import androidx.room.Room;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.icu.text.LocaleDisplayNames;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.gseven.studentplanner.data.database.AppDatabase;
 import com.gseven.studentplanner.data.model.Course;
-import com.gseven.studentplanner.database.CourseDAO;
-import com.gseven.studentplanner.database.StudentPlannerDatabase;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 /**
@@ -58,7 +53,7 @@ public class ViewAllCoursesActivity extends AppCompatActivity {
         this.completedCount = findViewById(R.id.txt_completedCount);
         this.progressCount = findViewById(R.id.txt_progressCount);
         this.plannedCount = findViewById(R.id.txt_plannedCount);
-
+        /**
         StudentPlannerDatabase db = Room.databaseBuilder(getApplicationContext(),
                 StudentPlannerDatabase.class,
                 "studentplanner-database")
@@ -66,7 +61,10 @@ public class ViewAllCoursesActivity extends AppCompatActivity {
 
         CourseDAO courseDAO = db.courseDao();
         this.allCourses = courseDAO.getAll();
+        */
 
+        AppDatabase db = AppDatabase.getDBInstance(this.getApplicationContext());
+        this.allCourses = db.courseDao().getAll();
 
         /** Set UI TextViews to display course counts*/
         updateCourseCountTotals();
@@ -111,6 +109,7 @@ public class ViewAllCoursesActivity extends AppCompatActivity {
 
                 Log.d("EDIT", "IN EDIT");
 
+                /**
                 StudentPlannerDatabase db = Room.databaseBuilder(getApplicationContext(),
                         StudentPlannerDatabase.class,
                         "studentplanner-database")
@@ -120,6 +119,11 @@ public class ViewAllCoursesActivity extends AppCompatActivity {
 
                 this.allCourses.clear();
                 this.allCourses.addAll(courseDAO.getAll());
+                */
+
+                AppDatabase db = AppDatabase.getDBInstance(this.getApplicationContext());
+                this.allCourses.clear();
+                this.allCourses.addAll(db.courseDao().getAll());
 
                 updateCourseCountTotals();
 
@@ -165,6 +169,7 @@ public class ViewAllCoursesActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
+        /**
         StudentPlannerDatabase db = Room.databaseBuilder(getApplicationContext(),
                 StudentPlannerDatabase.class,
                 "studentplanner-database")
@@ -172,6 +177,10 @@ public class ViewAllCoursesActivity extends AppCompatActivity {
 
         CourseDAO courseDAO = db.courseDao();
         List<Course> updatedCourses = courseDAO.getAll();
+        */
+
+        AppDatabase db = AppDatabase.getDBInstance(this.getApplicationContext());
+        List<Course> updatedCourses = db.courseDao().getAll();
 
         this.allCourses.clear();
         this.allCourses.addAll(updatedCourses);
