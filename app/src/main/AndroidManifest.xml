@@ -9,15 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentPlanner">
-        <activity android:name=".SignUpSuccess"></activity>
+        <activity
+            android:name=".ui.goaltracker.AddGoalActivity"
+            android:parentActivityName=".ui.goaltracker.GoalTrackerActivity" />
+        <activity android:name=".EditNotesActivity" />
+        <activity android:name=".SignUpSuccess" />
         <activity android:name=".ViewPlanner" />
         <activity android:name=".ViewGPA" />
         <activity android:name=".SignUp" />
         <activity android:name=".EditProfileActivity" />
-        <activity android:name=".EditNotesActivity" />
         <activity android:name=".NotesMainActivity" />
         <activity
-            android:name=".GoalTrackerActivity"
+            android:name=".ui.goaltracker.GoalTrackerActivity"
             android:label="@string/title_activity_goal_tracker"
             android:theme="@style/Theme.StudentPlanner.NoActionBar" />
         <activity

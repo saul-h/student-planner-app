@@ -1,6 +1,5 @@
 package com.gseven.studentplanner;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,11 +7,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuView;
+
+import com.gseven.studentplanner.ui.goaltracker.GoalTrackerActivity;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -41,7 +40,6 @@ public class MainMenuActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), GoalTrackerActivity.class);
                 startActivity(intent);
             }
-
         });
 
         planner_button.setOnClickListener(new View.OnClickListener() {
