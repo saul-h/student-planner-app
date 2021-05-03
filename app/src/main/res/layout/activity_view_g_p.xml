@@ -6,33 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ViewGPA">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="44dp"
-        android:layout_height="46dp"
-        android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_edit"
-        tools:layout_editor_absoluteX="247dp"
-        tools:layout_editor_absoluteY="425dp" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton3"
-        android:layout_width="44dp"
-        android:layout_height="46dp"
-        android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_edit"
-        tools:layout_editor_absoluteX="246dp"
-        tools:layout_editor_absoluteY="514dp" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton4"
-        android:layout_width="44dp"
-        android:layout_height="46dp"
-        android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_edit"
-        tools:layout_editor_absoluteX="246dp"
-        tools:layout_editor_absoluteY="605dp" />
-
     <TextView
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
@@ -40,16 +13,8 @@
         android:text="GPAProgress"
         android:textSize="24sp"
         tools:layout_editor_absoluteX="135dp"
-        tools:layout_editor_absoluteY="299dp" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton8"
-        android:layout_width="44dp"
-        android:layout_height="46dp"
-        android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_edit"
-        tools:layout_editor_absoluteX="247dp"
-        tools:layout_editor_absoluteY="560dp" />
+        tools:layout_editor_absoluteY="299dp"
+        tools:ignore="MissingConstraints" />
 
     <ProgressBar
         android:id="@+id/progressBar4"
@@ -57,107 +22,102 @@
         android:layout_width="191dp"
         android:layout_height="183dp"
         tools:layout_editor_absoluteX="110dp"
-        tools:layout_editor_absoluteY="101dp" />
+        tools:layout_editor_absoluteY="101dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName9"
+        android:id="@+id/class2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="class2"
-        tools:layout_editor_absoluteX="25dp"
-        tools:layout_editor_absoluteY="469dp" />
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="459dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName11"
+        android:id="@+id/class3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="class3"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="514dp" />
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="504dp"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/button9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Back to DT"
-        tools:layout_editor_absoluteX="274dp"
-        tools:layout_editor_absoluteY="667dp" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton13"
-        android:layout_width="44dp"
-        android:layout_height="46dp"
-        android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_edit"
-        tools:layout_editor_absoluteX="246dp"
-        tools:layout_editor_absoluteY="470dp" />
-
-    <ProgressBar
-        android:id="@+id/progressBar5"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="339dp" />
+        tools:layout_editor_absoluteX="145dp"
+        tools:layout_editor_absoluteY="667dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="GEcredits"
+        android:text="GE Credits: 30"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="290dp"
-        tools:layout_editor_absoluteY="47dp" />
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="77dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="majorcredits"
+        android:text="Major Credits: 60"
         android:textSize="18sp"
         tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="47dp" />
+        tools:layout_editor_absoluteY="47dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName12"
+        android:id="@+id/class4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="class4"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="559dp" />
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="549dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName13"
+        android:id="@+id/class1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="class1"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="424dp" />
-
-    <Button
-        android:id="@+id/button10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="More Classes"
-        tools:layout_editor_absoluteX="65dp"
-        tools:layout_editor_absoluteY="667dp" />
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="414dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName14"
+        android:id="@+id/class5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="class5"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="604dp" />
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="594dp"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName16"
+        android:layout_width="228dp"
+        android:layout_height="43dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Total Credits Required: 120"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="167dp"
+        tools:layout_editor_absoluteY="28dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
