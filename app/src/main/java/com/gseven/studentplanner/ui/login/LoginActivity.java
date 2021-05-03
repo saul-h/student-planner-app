@@ -11,6 +11,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -33,8 +34,12 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.gseven.studentplanner.MainMenuActivity;
 import com.gseven.studentplanner.R;
+import com.gseven.studentplanner.data.database.AppDatabase;
+import com.gseven.studentplanner.data.entities.User;
 import com.gseven.studentplanner.ui.login.LoginViewModel;
 import com.gseven.studentplanner.ui.login.LoginViewModelFactory;
+
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -54,6 +59,30 @@ public class LoginActivity extends AppCompatActivity {
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
         final SignInButton gSignInButton = findViewById(R.id.google_sign_in_button);
         gSignInButton.setSize(SignInButton.SIZE_STANDARD);
+
+        List<User> allUsers;
+        User tom = new User();
+        tom.firstName = "Tom";
+        tom.lastName = "Rossu";
+        tom.email = "tom@rossu.com";
+        tom.uid = 123456789;
+        tom.setPassword("tom123456789");
+
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "AppDatabase")
+                .allowMainThreadQueries()
+                .build();
+
+        db.userDao().insertUsers(tom);
+        allUsers = db.userDao().loadFullName();
+
+        for (int i = 0; i < allUsers.size(); i++){
+            System.out.println(allUsers.get(i).email);
+        }
+
+        System.out.println("print this one "+ db.userDao().loadFullName());
+
+
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
@@ -151,6 +180,51 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    public boolean validate(EditText input_email, EditText input_password) {
+        boolean valid = true;
+        boolean hash_password = false;
+
+        String email = input_email.getText().toString();
+        String password = input_password.getText().toString();
+
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            input_email.setError("enter a valid email address");
+            valid = false;
+        } else {
+            input_email.setError(null);
+        }
+
+        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
+            input_password.setError("between 4 and 10 alphanumeric characters");
+            valid = false;
+        } else {
+            input_password.setError(null);
+        }
+
+        AppDatabase this_db = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "AppDatabase")
+                .allowMainThreadQueries()
+                .build();
+        List<User> this_user_list = this_db.userDao().loadFullName();
+
+        for (int i = 0; i < this_user_list.size(); i++)
+        {
+            String this_user_email = this_user_list.get(i).email;
+            String this_user_password = this_user_list.get(i).getPassword();
+            if (this_user_email == input_email.toString() ) {
+                hash_password = true;
+                if(hash_password == true){
+                   if (this_user_password == input_password.toString()){
+                       valid = true;
+                   }
+                }
+                break;
+            }
+        }
+
+
+        return valid;
+    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

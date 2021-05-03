@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "user_table")
 public class User {
     @PrimaryKey
     public int uid;
@@ -20,4 +20,12 @@ public class User {
 
     @ColumnInfo(name = "password")
     private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
