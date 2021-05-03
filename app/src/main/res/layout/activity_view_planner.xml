@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".ViewPlanner">
 
+    <EditText
+        android:id="@+id/editTextTextPersonName3"
+        android:layout_width="145dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="17dp"
+        android:layout_marginRight="17dp"
+        android:layout_marginBottom="287dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Tomorrow Todos" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,11 +28,25 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="137dp"
-        android:layout_marginLeft="137dp"
-        android:layout_marginTop="406dp"
-        android:layout_marginEnd="138dp"
-        android:layout_marginRight="138dp" />
+        android:layout_marginStart="250dp"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="446dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="447dp"
+        android:layout_marginEnd="235dp"
+        android:layout_marginRight="235dp" />
 
     <Button
         android:id="@+id/button5"
@@ -31,9 +59,9 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="159dp"
         android:layout_marginLeft="159dp"
-        android:layout_marginEnd="159dp"
-        android:layout_marginRight="159dp"
-        android:layout_marginBottom="59dp"
+        android:layout_marginEnd="158dp"
+        android:layout_marginRight="158dp"
+        android:layout_marginBottom="34dp"
         android:text="Home" />
 
     <CalendarView
@@ -46,4 +74,32 @@
         android:layout_marginEnd="31dp"
         android:layout_marginRight="31dp"
         android:layout_marginBottom="359dp" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName2"
+        android:layout_width="145dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="230dp"
+        android:layout_marginRight="230dp"
+        android:layout_marginBottom="284dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Today's Todos" />
+
+    <TextView
+        android:id="@+id/date_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="168dp"
+        android:layout_marginRight="168dp"
+        android:layout_marginBottom="337dp"
+        android:text="Set the Date"
+        android:textStyle="bold" />
+
 </RelativeLayout>

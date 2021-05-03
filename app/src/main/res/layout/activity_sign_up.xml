@@ -8,23 +8,25 @@
 
     <EditText
         android:id="@+id/editTextTextPersonName5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="158dp"
+        android:layout_height="43dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Last Name"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="198dp" />
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="200dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/editTextTextPersonName6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="157dp"
+        android:layout_height="46dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Title"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="253dp" />
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="242dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/editTextPhone2"
@@ -33,7 +35,8 @@
         android:ems="10"
         android:inputType="phone"
         tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="527dp" />
+        tools:layout_editor_absoluteY="527dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/editTextTextPostalAddress2"
@@ -42,7 +45,8 @@
         android:ems="10"
         android:inputType="textPostalAddress"
         tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="360dp" />
+        tools:layout_editor_absoluteY="354dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView2"
@@ -53,7 +57,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="73dp" />
+        tools:layout_editor_absoluteY="73dp"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/button6"
@@ -69,13 +74,14 @@
 
     <EditText
         android:id="@+id/editTextTextPersonName7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="155dp"
+        android:layout_height="47dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="First Name"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="146dp" />
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="151dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/editTextTextEmailAddress3"
@@ -84,5 +90,39 @@
         android:ems="10"
         android:inputType="textEmailAddress"
         tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="475dp" />
+        tools:layout_editor_absoluteY="466dp"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName4"
+        android:layout_width="169dp"
+        android:layout_height="41dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="School"
+        tools:layout_editor_absoluteX="229dp"
+        tools:layout_editor_absoluteY="155dp"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName8"
+        android:layout_width="163dp"
+        android:layout_height="43dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Major"
+        tools:layout_editor_absoluteX="229dp"
+        tools:layout_editor_absoluteY="195dp"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName15"
+        android:layout_width="162dp"
+        android:layout_height="44dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Minor (Optional)"
+        tools:layout_editor_absoluteX="227dp"
+        tools:layout_editor_absoluteY="242dp"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>
