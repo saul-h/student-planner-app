@@ -180,6 +180,10 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * This methods validate user's input such as their email and password to the user database
+     * if the input email exist in the user table -> then check if password match -> return true
+     */
     public boolean validate(EditText input_email, EditText input_password) {
         boolean valid = false;
         boolean hash_password = false;
