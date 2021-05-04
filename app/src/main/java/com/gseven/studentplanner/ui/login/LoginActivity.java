@@ -32,6 +32,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.gseven.studentplanner.DegreeTrackerActivity;
 import com.gseven.studentplanner.MainMenuActivity;
 import com.gseven.studentplanner.R;
 import com.gseven.studentplanner.data.database.AppDatabase;
@@ -46,6 +47,10 @@ public class LoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 100;
     private LoginViewModel loginViewModel;
     //TEST
+
+
+    public static String global_userID;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,28 +65,14 @@ public class LoginActivity extends AppCompatActivity {
         final SignInButton gSignInButton = findViewById(R.id.google_sign_in_button);
         gSignInButton.setSize(SignInButton.SIZE_STANDARD);
 
-        List<User> allUsers;
-        User tom = new User();
-        tom.firstName = "Tom";
-        tom.lastName = "Rossu";
-        tom.email = "tom@rossu.com";
-        tom.uid = 123456789;
-        tom.setPassword("tom123456789");
-
+        /*
         AppDatabase db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "AppDatabase")
                 .allowMainThreadQueries()
                 .build();
-
-        db.userDao().insertUsers(tom);
-        allUsers = db.userDao().loadFullName();
-
-        for (int i = 0; i < allUsers.size(); i++){
-            System.out.println(allUsers.get(i).email);
-        }
-
-        System.out.println("print this one "+ db.userDao().loadFullName());
-
+        */
+        AppDatabase db = AppDatabase.getDBInstance(this.getApplicationContext());
+        populateWithTestData(db);
 
 
         // Configure sign-in to request the user's ID, email address, and basic
@@ -164,6 +155,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
+                //validate login
+                boolean ok = validate(usernameEditText,passwordEditText);
+                if (ok == true){
+                    Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
+                    startActivity(intent);
+                }
+                else{
+
+                }
                 //loginViewModel.login(usernameEditText.getText().toString(), passwordEditText.getText().toString());
             }
         });
@@ -181,8 +181,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public boolean validate(EditText input_email, EditText input_password) {
-        boolean valid = true;
+        boolean valid = false;
         boolean hash_password = false;
+        boolean go = false;
 
         String email = input_email.getText().toString();
         String password = input_password.getText().toString();
@@ -194,27 +195,32 @@ public class LoginActivity extends AppCompatActivity {
             input_email.setError(null);
         }
 
-        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            input_password.setError("between 4 and 10 alphanumeric characters");
+        if (password.isEmpty() || password.length() < 4 || password.length() > 14) {
+            input_password.setError("between 4 and 14 alphanumeric characters");
             valid = false;
         } else {
             input_password.setError(null);
         }
 
-        AppDatabase this_db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "AppDatabase")
-                .allowMainThreadQueries()
-                .build();
-        List<User> this_user_list = this_db.userDao().loadFullName();
+        AppDatabase this_db = AppDatabase.getDBInstance(this.getApplicationContext());
+        List<User> this_user_list = this_db.userDao().load_user_list();
 
         for (int i = 0; i < this_user_list.size(); i++)
         {
-            String this_user_email = this_user_list.get(i).email;
+            String this_user_email = this_user_list.get(i).getEmail();
             String this_user_password = this_user_list.get(i).getPassword();
-            if (this_user_email == input_email.toString() ) {
+            String this_user_uid =  this_user_list.get(i).getUserID();
+
+            System.out.println("fired from database user=" + this_user_email + ", pss= "+ this_user_password +", UserID ="+ this_user_uid);
+            System.out.println("email =" + email + ", " + password);
+
+
+            if ( this_user_email.equals(email) ) {
+                global_userID = this_user_uid;
+                System.out.println("Fired 2");
                 hash_password = true;
                 if(hash_password == true){
-                   if (this_user_password == input_password.toString()){
+                   if (this_user_password.equals(password)){
                        valid = true;
                    }
                 }
@@ -291,5 +297,33 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+    }
+
+    private static User addUser(final AppDatabase db, User user) {
+        db.userDao().insertUsers(user);
+        return user;
+    }
+
+    private static void populateWithTestData(AppDatabase db) {
+
+        User user2;
+        User user = new User();
+        user.firstName = "Tom";
+        user.lastName = "Rossu";
+        user.email = "tom@rossu.com";
+        user.uid = 123456789;
+        user.userID ="123456789";
+        user.setPassword("tom123456789");
+
+        addUser(db, user);
+
+        /*
+        user2 = db.userDao().getUser("123456789");
+        System.out.println("Shitt" + user2.getFirstName());
+        System.out.println("Shitt" + user2.getEmail());
+        System.out.println("Shitt" + user2.getUserID());
+        System.out.println("Shitt" + user2.getPassword());
+        */
+
     }
 }

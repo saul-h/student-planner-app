@@ -19,8 +19,11 @@ public interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertUsers(User...users);
 
-    @Query("SELECT uid, first_name, last_name, email FROM user_table")
-    public List<User> loadFullName();
+    @Query("SELECT * FROM user_table")
+    public List<User> load_user_list();
+
+    @Query("Select * FROM user_table where uid = :input_uid")
+    public User getUser(String input_uid);
 
 
 }
