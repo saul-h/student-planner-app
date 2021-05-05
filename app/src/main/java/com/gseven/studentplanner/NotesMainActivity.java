@@ -70,6 +70,7 @@ public class NotesMainActivity extends AppCompatActivity {
         });
 
         // TODO: issue is with launching my intent here
+        // fixed launch issue
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
