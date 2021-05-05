@@ -172,6 +172,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+
                 // startActivity(signInIntent);
                 // TODO: implement startActivityForResult method
                 // String welcome = getString(R.string.welcome) + model.getDisplayName();

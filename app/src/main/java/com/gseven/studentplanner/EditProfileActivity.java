@@ -36,7 +36,6 @@ public class EditProfileActivity extends AppCompatActivity {
         final EditText ln_edit_text = findViewById(R.id.ln_edit_text);
         final EditText email = findViewById(R.id.email_edit_text);
 
-        //fn_edit_text.setText("dkdkfjfk", TextView.BufferType.EDITABLE);
 
         String this_user_email, this_user_first_name, this_user_last_name;
         this_user_email = " ";
@@ -44,26 +43,16 @@ public class EditProfileActivity extends AppCompatActivity {
         this_user_last_name = " ";
         Button save_button = findViewById(R.id.save_button);
 
-        System.out.println(" first User reference= "+ (String) LoginActivity.global_userID);
         String user_reference = (String) LoginActivity.global_userID;
-
 
         AppDatabase this_db = AppDatabase.getDBInstance(this.getApplicationContext());
 
         List<User> this_user_list = this_db.userDao().load_user_list();
-        System.out.println("User reference= "+ user_reference);
-
-        //List<User> user = this_db.userDao().printUser(user_reference); //this list only has one user
-
-        //System.out.println(user);
-
-        //String print_fn = user.get(0).firstName
-
 
         for(int i = 0; i < this_user_list.size(); i++){
             String uid = this_user_list.get(i).getUserID();
             if(uid.equals(user_reference)){
-                System.out.println("Fired User reference= "+ user_reference);
+
                 this_user_email= this_user_list.get(i).getEmail();
                 this_user_first_name = this_user_list.get(i).getFirstName();
                 this_user_last_name = this_user_list.get(i).getLastName();
