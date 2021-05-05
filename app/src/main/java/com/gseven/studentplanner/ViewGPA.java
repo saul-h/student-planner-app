@@ -57,6 +57,7 @@ public class ViewGPA extends AppCompatActivity {
         product += (credit*grade);
         total_credit += credit;
 
+
         gpaTotal.setText((int) (product/total_credit)); //Displays the GPA which is equal to ((course credit * grade point)/total credits)
 
 

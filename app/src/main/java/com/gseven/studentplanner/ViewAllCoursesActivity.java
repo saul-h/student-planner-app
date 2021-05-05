@@ -159,10 +159,13 @@ public class ViewAllCoursesActivity extends AppCompatActivity {
     }
 
 
+    //Takes user from ViewAllCourses to ViewGPA
     public void startViewGPA(View view) {
 
 
     }
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override

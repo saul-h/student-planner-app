@@ -47,7 +47,6 @@ public class ViewPlanner extends AppCompatActivity {
     }
 
 
-
     public void openMainMenu() {
         Intent intent = new Intent(this, MainMenuActivity.class);
         startActivity(intent);

@@ -109,7 +109,7 @@
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="GPAProgress"
+        android:text="GPA Progress"
         android:textSize="24sp"
         tools:layout_editor_absoluteX="135dp"
         tools:layout_editor_absoluteY="299dp"

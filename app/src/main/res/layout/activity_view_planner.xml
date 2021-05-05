@@ -18,7 +18,7 @@
         android:layout_marginBottom="287dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Tomorrow Todos" />
+        android:text="Tomorrow Todo" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="wrap_content"
