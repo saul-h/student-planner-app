@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Button;
 
 import com.gseven.studentplanner.data.database.AppDatabase;
 import com.gseven.studentplanner.data.model.Course;
@@ -43,6 +44,8 @@ public class ViewAllCoursesActivity extends AppCompatActivity {
     private TextView completedCount;
     private TextView progressCount;
     private TextView plannedCount;
+
+    private Button button_gpa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +84,15 @@ public class ViewAllCoursesActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+        button_gpa = (Button)findViewById(R.id.btn_viewGPA);
+        button_gpa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startViewGPA();
+            }
+        });
 
     }
 
@@ -159,10 +171,12 @@ public class ViewAllCoursesActivity extends AppCompatActivity {
     }
 
 
-    public void startViewGPA(View view) {
-
-
+    //Button takes user to Viewing the GPA
+    public void startViewGPA() {
+        Intent intent = new Intent(this, ViewGPA.class);
+        startActivity(intent);
     }
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
