@@ -9,11 +9,15 @@ import android.widget.Button;
 import android.content.Intent;
 
 import android.widget.CalendarView;
+import android.widget.CheckedTextView;
 import android.widget.TextView;
 
 public class ViewPlanner extends AppCompatActivity {
     private Button button;
+    private Button add;
+    private Button add2;
 
+    private CheckedTextView checklist1, checklist2;
     CalendarView calendar;
     TextView date_view;
 
@@ -36,14 +40,41 @@ public class ViewPlanner extends AppCompatActivity {
              }
          });
 
+        //Function should go like this
+        /*
+        Click on date
+        List of events for that date appears
+        Need database? Storing dates with events? Or can do local?
+         */
+        calendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-                button = (Button) findViewById(R.id.button5);
+            }
+        });
+
+
+
+        //Button for the main menu
+        button = (Button) findViewById(R.id.button5);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openMainMenu();
             }
         });
+
+        //Making the buttons and function for adding tasks to the checklist per day
+        checklist1 = (CheckedTextView) findViewById(R.id.checkedTextView);
+        checklist2 = (CheckedTextView) findViewById(R.id.checkedTextView2);
+        add = (Button) findViewById(R.id.button_add);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Refer to functions on adding courses on adding activities here
+            }
+        });
+
     }
 
 
