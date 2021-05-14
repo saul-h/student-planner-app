@@ -44,8 +44,6 @@ public class AddNewCourseActivity extends AppCompatActivity {
         this.units = findViewById(R.id.editText_units);
         this.radioGroup = findViewById(R.id.radio_group);
 
-
-
     }
 
     /**

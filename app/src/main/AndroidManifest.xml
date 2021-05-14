@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentPlanner">
+        <activity android:name=".ui.goaltracker.EditGoalActivity"></activity>
         <activity
             android:name=".ui.goaltracker.AddGoalActivity"
             android:parentActivityName=".ui.goaltracker.GoalTrackerActivity" />

@@ -78,8 +78,7 @@ public class EditCourseActivity extends AppCompatActivity {
         if (this.gradeReceived.getText().toString().equals("") || this.gradeReceived.getText() == null){
             grade = '\0';
             Log.d("EDIT_COURSE", "GRADE EMPTY");
-        }
-        else{
+        } else {
 
             grade = this.gradeReceived.getText().toString().toUpperCase().charAt(0);
 

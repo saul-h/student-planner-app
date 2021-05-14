@@ -11,7 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="90dp"
+        android:fontFamily="sans-serif"
         android:text="Add Goal"
+        android:textAllCaps="false"
+        android:textIsSelectable="false"
         android:textSize="56sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +40,7 @@
         android:layout_marginTop="30dp"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="Enter a description"
+        android:hint="Optional: Enter a short description"
         android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,12 +48,52 @@
 
     <Button
         android:id="@+id/btnSaveGoal"
-        android:layout_width="290dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="286dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="58dp"
         android:text="Add Goal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberGoalCount" />
+
+    <TextView
+        android:id="@+id/textViewDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="54dp"
+        android:layout_marginLeft="54dp"
+        android:text="Description:"
+        app:layout_constraintBottom_toTopOf="@+id/editTextGoalDescription"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewCount"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="54dp"
+        android:layout_marginLeft="54dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:text="Count:"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextNumberGoalCount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextGoalDescription" />
+
+    <EditText
+        android:id="@+id/editTextNumberGoalCount"
+        android:layout_width="211dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginRight="54dp"
+        android:ems="10"
+        android:hint="Optional: Enter a number "
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewCount"
         app:layout_constraintTop_toBottomOf="@+id/editTextGoalDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,6 +26,7 @@ public class GoalTrackerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_goal_tracker);
 
         final Button new_goal_button = findViewById(R.id.buttonNewGoal);
+        final Button update_goal = findViewById(R.id.buttonUpdateGoal);
 
         new_goal_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +34,14 @@ public class GoalTrackerActivity extends AppCompatActivity {
                 startActivityForResult(new Intent(GoalTrackerActivity.this, AddGoalActivity.class), 100);
             }
         });
+
+        update_goal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(GoalTrackerActivity.this, EditGoalActivity.class), 100);
+            }
+        });
+
 
         initRecyclerView();
 
@@ -53,6 +62,29 @@ public class GoalTrackerActivity extends AppCompatActivity {
         AppDatabase db = AppDatabase.getDBInstance(this.getApplicationContext());
         List<Goal> goalList = db.goalDao().loadAllGoals();
         goalListAdapter.setGoalList(goalList);
+    }
+
+    public void updateGoal(int goalID,
+                           String name,
+                           String description,
+                           int currentProgress,
+                           int totalNeeded,
+                           boolean completed) {
+        AppDatabase db = AppDatabase.getDBInstance(this.getApplicationContext());
+        Goal goal = db.goalDao().getGoalWithGid(goalID);
+        goal.name = name;
+        goal.description = description;
+        goal.currentProgress = 0;
+        goal.totalNeeded = totalNeeded;
+        goal.completed = false;
+        db.goalDao().updateGoal(goal);
+        //finish();
+    }
+
+    public void deleteGoal(int goalID) {
+        AppDatabase db = AppDatabase.getDBInstance(this.getApplicationContext());
+        Goal goal = db.goalDao().getGoalWithGid(goalID);
+        db.goalDao().deleteGoal(goal);
     }
 
     @Override

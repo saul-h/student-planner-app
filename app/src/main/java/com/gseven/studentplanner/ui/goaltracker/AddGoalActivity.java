@@ -21,23 +21,43 @@ public class AddGoalActivity extends AppCompatActivity {
 
         final EditText goalName = findViewById(R.id.editTextGoal);
         final EditText goalDescription = findViewById(R.id.editTextGoalDescription);
+        final EditText goalCount = findViewById(R.id.editTextNumberGoalCount);
+
 
         Button saveButton = findViewById(R.id.btnSaveGoal);
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveNewGoal(goalName.getText().toString(), goalDescription.getText().toString());
+                int count = 1;
+                if (goalName.getText().toString().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Name cannot be empty", Toast.LENGTH_LONG).show();
+                } else if (goalName.getText().toString().isEmpty()) {
+                    saveNewGoal(goalName.getText().toString(),
+                            goalDescription.getText().toString(),
+                            count);
+                } else {
+                    try {
+                        count = Integer.parseInt(goalCount.getText().toString());
+                        saveNewGoal(goalName.getText().toString(),
+                                goalDescription.getText().toString(),
+                                count);
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(getApplicationContext(), "Must be a number", Toast.LENGTH_LONG).show();
+                    }
+                }
+
             }
         });
     }
 
-    private void saveNewGoal(String name, String description) {
+    private void saveNewGoal(String name, String description, int count) {
         AppDatabase db = AppDatabase.getDBInstance(this.getApplicationContext());
         Goal goal = new Goal();
         goal.name = name;
         goal.description = description;
         goal.currentProgress = 0;
+        goal.totalNeeded = count;
         goal.completed = false;
         db.goalDao().insertGoal(goal);
         finish();

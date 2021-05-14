@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gseven.studentplanner.R;
+import com.gseven.studentplanner.data.daos.GoalDao;
+import com.gseven.studentplanner.data.database.AppDatabase;
 import com.gseven.studentplanner.data.entities.Goal;
 
 import java.util.ArrayList;
@@ -35,7 +37,7 @@ public class GoalListAdapter extends RecyclerView.Adapter<GoalListAdapter.MyView
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.recycler_row, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.goal_tracker_recycler_row, parent, false);
 
         return new MyViewHolder(view);
     }
@@ -44,10 +46,32 @@ public class GoalListAdapter extends RecyclerView.Adapter<GoalListAdapter.MyView
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.goalName.setText(String.valueOf(this.goalList.get(position).name));
         holder.goalCompleted.setChecked(this.goalList.get(position).completed);
+
+        holder.goalName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        holder.goalCompleted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppDatabase db = AppDatabase.getDBInstance(context.getApplicationContext());
+                Goal goal = db.goalDao().getGoalWithGid(goalList.get(position).gid);
+                if (holder.goalCompleted.isChecked())
+                {
+                    goal.completed = true;
+                } else {
+                    goal.completed = false;
+                }
+                db.goalDao().updateGoal(goal);
+            }
+        });
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "This was clicked", Toast.LENGTH_LONG).show();
+                // Toast.makeText(context, "This was clicked", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -61,7 +85,6 @@ public class GoalListAdapter extends RecyclerView.Adapter<GoalListAdapter.MyView
 
         TextView goalName;
         CheckBox goalCompleted;
-
         LinearLayout linearLayout;
 
         public MyViewHolder(View view) {

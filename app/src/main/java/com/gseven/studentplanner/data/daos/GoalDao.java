@@ -15,8 +15,11 @@ public interface GoalDao {
     //@Query("SELECT * FROM goal")
     //List<Goal> loadAllByIds(int[] goalIds);
 
-    @Query("SELECT * FROM goal")
+    @Query("SELECT * FROM goal ORDER BY goal.completed ASC")
     List<Goal> loadAllGoals();
+
+    @Query("SELECT * FROM goal WHERE goal.gid = :gid")
+    Goal getGoalWithGid(int gid);
 
     @Insert
     void insertGoal(Goal... goal);
