@@ -1,4 +1,4 @@
-package com.gseven.studentplanner;
+package com.gseven.studentplanner.degreetracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,7 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.gseven.studentplanner.R;
+import com.gseven.studentplanner.degreetracker.DegreeTrackerActivity;
 
 public class ViewGPA extends AppCompatActivity {
     private EditText grade1, grade2, grade3, grade4, grade5, credit1, credit2, credit3, credit4, credit5;

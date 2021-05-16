@@ -1,4 +1,4 @@
-package com.gseven.studentplanner;
+package com.gseven.studentplanner.degreetracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
@@ -12,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.gseven.studentplanner.R;
 import com.gseven.studentplanner.data.database.AppDatabase;
 import com.gseven.studentplanner.data.model.Course;
 

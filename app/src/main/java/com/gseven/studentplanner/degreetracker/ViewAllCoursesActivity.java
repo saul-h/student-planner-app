@@ -1,4 +1,4 @@
-package com.gseven.studentplanner;
+package com.gseven.studentplanner.degreetracker;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,6 +16,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
 
+import com.gseven.studentplanner.R;
 import com.gseven.studentplanner.data.database.AppDatabase;
 import com.gseven.studentplanner.data.model.Course;
 
@@ -86,13 +86,13 @@ public class ViewAllCoursesActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-        button_gpa = (Button)findViewById(R.id.btn_viewGPA);
+/*        button_gpa = (Button)findViewById(R.id.btn_viewGPA);
         button_gpa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startViewGPA();
             }
-        });
+        });*/
 
     }
 

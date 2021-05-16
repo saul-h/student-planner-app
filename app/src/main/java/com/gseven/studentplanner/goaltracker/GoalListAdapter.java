@@ -1,4 +1,4 @@
-package com.gseven.studentplanner.ui.goaltracker;
+package com.gseven.studentplanner.goaltracker;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,19 +7,21 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gseven.studentplanner.R;
-import com.gseven.studentplanner.data.daos.GoalDao;
 import com.gseven.studentplanner.data.database.AppDatabase;
 import com.gseven.studentplanner.data.entities.Goal;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This is the adapter class that is used by the GoalTrackerActivity class to interact with the
+ * RecyclerView which contains the list of the user's goals.
+ */
 public class GoalListAdapter extends RecyclerView.Adapter<GoalListAdapter.MyViewHolder> {
 
     private Context context;
@@ -66,12 +68,6 @@ public class GoalListAdapter extends RecyclerView.Adapter<GoalListAdapter.MyView
                     goal.completed = false;
                 }
                 db.goalDao().updateGoal(goal);
-            }
-        });
-        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Toast.makeText(context, "This was clicked", Toast.LENGTH_LONG).show();
             }
         });
     }

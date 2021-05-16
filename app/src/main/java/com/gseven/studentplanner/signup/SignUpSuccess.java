@@ -1,4 +1,4 @@
-package com.gseven.studentplanner;
+package com.gseven.studentplanner.signup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
+
+import com.gseven.studentplanner.MainMenuActivity;
+import com.gseven.studentplanner.R;
 
 public class SignUpSuccess extends AppCompatActivity {
     private Button button;

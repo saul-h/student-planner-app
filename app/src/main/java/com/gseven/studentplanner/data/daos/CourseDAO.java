@@ -10,6 +10,12 @@ import com.gseven.studentplanner.data.model.Course;
 
 import java.util.List;
 
+/**
+ * CoarseDao is the Data Access Object for Course objects.
+ *
+ * Contains Query, Insert, Update and Delete methods
+ * for Course objects.
+ */
 @Dao
 public interface CourseDAO {
 

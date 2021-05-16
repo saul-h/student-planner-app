@@ -1,4 +1,4 @@
-package com.gseven.studentplanner;
+package com.gseven.studentplanner.notes;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.gseven.studentplanner.NotesMainActivity;
+import com.gseven.studentplanner.R;
 
 import java.io.BufferedReader;
 import java.io.File;

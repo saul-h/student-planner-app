@@ -4,6 +4,9 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+/**
+ * Defines the database fields for the object User.
+ */
 @Entity
 public class User {
     @PrimaryKey

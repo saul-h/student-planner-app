@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -33,18 +32,17 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.gseven.studentplanner.MainMenuActivity;
 import com.gseven.studentplanner.R;
-import com.gseven.studentplanner.ui.login.LoginViewModel;
-import com.gseven.studentplanner.ui.login.LoginViewModelFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
+    // RC_SIGN_IN is the status code for a user successfully signing into their app using gmail
     private static final int RC_SIGN_IN = 100;
     private LoginViewModel loginViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login); // load com.gseven.studentplanner.login user interface
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
 
@@ -95,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 setResult(Activity.RESULT_OK);
 
-                //Complete and destroy login activity once successful
+                //Complete and destroy com.gseven.studentplanner.login activity once successful
                 finish();
             }
         });
@@ -145,7 +143,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent signInIntent = mGoogleSignInClient.getSignInIntent();
                 // startActivity(signInIntent);
-                // TODO: implement startActivityForResult method
                 // String welcome = getString(R.string.welcome) + model.getDisplayName();
                 startActivityForResult(signInIntent, RC_SIGN_IN);
             }
@@ -176,7 +173,7 @@ public class LoginActivity extends AppCompatActivity {
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             // TODO: implement The following code
             // Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
-            Toast.makeText(getApplicationContext(), "Failed to login with Google", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Failed to com.gseven.studentplanner.login with Google", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -11,6 +11,10 @@ import com.gseven.studentplanner.data.daos.GoalDao;
 import com.gseven.studentplanner.data.entities.Goal;
 import com.gseven.studentplanner.data.model.Course;
 
+/**
+ * Defines our AppDatabase for Scholar Helper app.
+ * Persists by using a static instance of our database.
+ */
 @Database(entities = {Goal.class, Course.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -19,6 +23,10 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;
 
+    /**
+     * @param context
+     * @return AppDatabase INSTANCE
+     */
     public static AppDatabase getDBInstance(Context context) {
 
         if (INSTANCE == null) {

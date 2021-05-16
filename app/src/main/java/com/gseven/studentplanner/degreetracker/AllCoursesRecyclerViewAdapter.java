@@ -1,4 +1,4 @@
-package com.gseven.studentplanner;
+package com.gseven.studentplanner.degreetracker;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,16 +13,21 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.gseven.studentplanner.R;
 import com.gseven.studentplanner.data.model.Course;
 
 import java.util.List;
 
+/**
+ * This is the adapter class that is used by the ViewAllCoursesActivity class to interact with the
+ * RecyclerView which contains the list of the user's inputted courses.
+ */
 public class AllCoursesRecyclerViewAdapter extends RecyclerView.Adapter<AllCoursesRecyclerViewAdapter.AllCoursesViewHolder> {
 
-    private List<Course> allCourses;
-    private Context context;
+    private final List<Course> allCourses;
+    private final Context context;
 
-    public AllCoursesRecyclerViewAdapter(Context context,List<Course> allCourses) {
+    public AllCoursesRecyclerViewAdapter(Context context, List<Course> allCourses) {
         this.allCourses = allCourses;
         this.context = context;
     }
@@ -30,7 +35,7 @@ public class AllCoursesRecyclerViewAdapter extends RecyclerView.Adapter<AllCours
     @NonNull
     @Override
     public AllCoursesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_all_courses_row_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_all_courses_row_item, parent, false);
 
         AllCoursesRecyclerViewAdapter.AllCoursesViewHolder holder = new AllCoursesRecyclerViewAdapter.AllCoursesViewHolder(view);
 
@@ -57,16 +62,14 @@ public class AllCoursesRecyclerViewAdapter extends RecyclerView.Adapter<AllCours
                 toast.show();
 
 
-                Intent intent = new Intent(context,EditCourseActivity.class);
+                Intent intent = new Intent(context, EditCourseActivity.class);
 
                 Course course = allCourses.get(position);
 
-                intent.putExtra("COURSE",course);
+                intent.putExtra("COURSE", course);
 
 
-
-                ((Activity)context).startActivityForResult(intent,ViewAllCoursesActivity.LAUNCH_ADD_EDIT_COURSE);
-
+                ((Activity) context).startActivityForResult(intent, ViewAllCoursesActivity.LAUNCH_ADD_EDIT_COURSE);
 
 
             }
@@ -89,8 +92,6 @@ public class AllCoursesRecyclerViewAdapter extends RecyclerView.Adapter<AllCours
         TextView statusText;
 
         ConstraintLayout parentLayout;
-
-
 
 
         public AllCoursesViewHolder(@NonNull View itemView) {

@@ -1,4 +1,4 @@
-package com.gseven.studentplanner.ui.goaltracker;
+package com.gseven.studentplanner.goaltracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 

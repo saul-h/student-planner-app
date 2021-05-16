@@ -3,7 +3,7 @@ package com.gseven.studentplanner.ui.login;
 import androidx.annotation.Nullable;
 
 /**
- * Data validation state of the login form.
+ * Data validation state of the com.gseven.studentplanner.login form.
  */
 class LoginFormState {
     @Nullable

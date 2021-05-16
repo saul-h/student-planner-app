@@ -1,4 +1,4 @@
-package com.gseven.studentplanner.ui.goaltracker;
+package com.gseven.studentplanner.goaltracker;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;

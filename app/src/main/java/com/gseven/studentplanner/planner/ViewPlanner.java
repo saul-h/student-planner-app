@@ -1,4 +1,4 @@
-package com.gseven.studentplanner;
+package com.gseven.studentplanner.planner;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,10 +12,12 @@ import android.widget.CalendarView;
 import android.widget.CheckedTextView;
 import android.widget.TextView;
 
+import com.gseven.studentplanner.MainMenuActivity;
+import com.gseven.studentplanner.R;
+
 public class ViewPlanner extends AppCompatActivity {
     private Button button;
     private Button add;
-    private Button add2;
 
     private CheckedTextView checklist1, checklist2;
     CalendarView calendar;

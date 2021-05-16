@@ -1,4 +1,4 @@
-package com.gseven.studentplanner;
+package com.gseven.studentplanner.signup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
 import android.widget.EditText;
+
+import com.gseven.studentplanner.R;
 
 public class SignUp extends AppCompatActivity {
     private EditText firstName;

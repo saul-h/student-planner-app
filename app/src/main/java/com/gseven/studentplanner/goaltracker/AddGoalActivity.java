@@ -1,4 +1,4 @@
-package com.gseven.studentplanner.ui.goaltracker;
+package com.gseven.studentplanner.goaltracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,16 +23,20 @@ public class AddGoalActivity extends AppCompatActivity {
         final EditText goalDescription = findViewById(R.id.editTextGoalDescription);
         final EditText goalCount = findViewById(R.id.editTextNumberGoalCount);
 
-
         Button saveButton = findViewById(R.id.btnSaveGoal);
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // default value of count
                 int count = 1;
+
                 if (goalName.getText().toString().isEmpty()) {
+                    // goal must have name
                     Toast.makeText(getApplicationContext(), "Name cannot be empty", Toast.LENGTH_LONG).show();
-                } else if (goalName.getText().toString().isEmpty()) {
+                } else if (goalCount.getText().toString().isEmpty()) {
+                    // if no count is inputted into goal, use count = 1
                     saveNewGoal(goalName.getText().toString(),
                             goalDescription.getText().toString(),
                             count);
@@ -51,6 +55,14 @@ public class AddGoalActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Saves a new goal with the given parameters.
+     *
+     * @param name the name of the goal, user will see this string on the recycler view list
+     * @param description optional description for the user to enter for information about goal
+     * @param count if the goal has a certain amount that needs to get done than the user can
+     *              enter a positive number. Otherwise this is set to 1 by default.
+     */
     private void saveNewGoal(String name, String description, int count) {
         AppDatabase db = AppDatabase.getDBInstance(this.getApplicationContext());
         Goal goal = new Goal();

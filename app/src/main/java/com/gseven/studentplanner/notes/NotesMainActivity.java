@@ -1,4 +1,4 @@
-package com.gseven.studentplanner;
+package com.gseven.studentplanner.notes;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import com.gseven.studentplanner.R;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -46,7 +48,7 @@ public class NotesMainActivity extends AppCompatActivity {
                 String heading = editTextHeading.getText().toString().trim();
                 String content = editTextContent.getText().toString().trim();
                 if (!heading.isEmpty()) {
-                    if(!content.isEmpty()) {
+                    if (!content.isEmpty()) {
                         try {
                             FileOutputStream fileOutputStream = openFileOutput(heading + ".txt", Context.MODE_PRIVATE); //heading will be the filename
                             fileOutputStream.write(content.getBytes());
@@ -58,10 +60,10 @@ public class NotesMainActivity extends AppCompatActivity {
                         }
                         adapter.add(heading);
                         listView.setAdapter(adapter);
-                    }else {
+                    } else {
                         editTextContent.setError("Content can't be empty!");
                     }
-                }else{
+                } else {
                     editTextHeading.setError("Heading can't be empty!");
                 }
                 editTextContent.setText("");

@@ -11,7 +11,10 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.gseven.studentplanner.ui.goaltracker.GoalTrackerActivity;
+import com.gseven.studentplanner.degreetracker.DegreeTrackerActivity;
+import com.gseven.studentplanner.goaltracker.GoalTrackerActivity;
+import com.gseven.studentplanner.notes.NotesMainActivity;
+import com.gseven.studentplanner.planner.ViewPlanner;
 
 public class MainMenuActivity extends AppCompatActivity {
 

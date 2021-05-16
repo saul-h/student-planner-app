@@ -1,4 +1,4 @@
-package com.gseven.studentplanner;
+package com.gseven.studentplanner.degreetracker;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,6 +16,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.gseven.studentplanner.R;
 import com.gseven.studentplanner.data.database.AppDatabase;
 import com.gseven.studentplanner.data.model.Course;
 

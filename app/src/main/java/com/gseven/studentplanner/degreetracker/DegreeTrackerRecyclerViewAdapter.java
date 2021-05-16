@@ -1,4 +1,4 @@
-package com.gseven.studentplanner;
+package com.gseven.studentplanner.degreetracker;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,10 +11,15 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.gseven.studentplanner.R;
 import com.gseven.studentplanner.data.model.Course;
 
 import java.util.List;
 
+/**
+ * This is the adapter class that is used by the DegreeTrackerActivity class to interact with the
+ * RecyclerView which will display a list of the user's remaining courses left to take.
+ */
 public class DegreeTrackerRecyclerViewAdapter extends RecyclerView.Adapter<DegreeTrackerRecyclerViewAdapter.DegreeTrackerViewHolder> {
 
     private List<Course> courses;
@@ -52,10 +57,6 @@ public class DegreeTrackerRecyclerViewAdapter extends RecyclerView.Adapter<Degre
                 Toast toast = Toast.makeText(context, "Projected Completion: " + courses.get(position).getSemester(), Toast.LENGTH_SHORT);
 
                 toast.show();
-
-
-
-
 
             }
         });

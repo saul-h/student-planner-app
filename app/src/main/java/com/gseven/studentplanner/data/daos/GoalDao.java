@@ -10,10 +10,14 @@ import com.gseven.studentplanner.data.entities.Goal;
 
 import java.util.List;
 
+/**
+ * The Data Access Object for the Goal entity.
+ * 
+ * Contains Query, Insert, Update and Delete methods
+ * for the Goal.
+ */
 @Dao
 public interface GoalDao {
-    //@Query("SELECT * FROM goal")
-    //List<Goal> loadAllByIds(int[] goalIds);
 
     @Query("SELECT * FROM goal ORDER BY goal.completed ASC")
     List<Goal> loadAllGoals();

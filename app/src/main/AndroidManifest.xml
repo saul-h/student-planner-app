@@ -9,30 +9,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentPlanner">
-        <activity android:name=".ui.goaltracker.EditGoalActivity"></activity>
         <activity
-            android:name=".ui.goaltracker.AddGoalActivity"
-            android:parentActivityName=".ui.goaltracker.GoalTrackerActivity" />
-        <activity android:name=".EditNotesActivity" />
-        <activity android:name=".SignUpSuccess" />
-        <activity android:name=".ViewPlanner" />
-        <activity android:name=".ViewGPA" />
-        <activity android:name=".SignUp" />
+            android:name=".goaltracker.EditGoalActivity"
+            android:parentActivityName=".goaltracker.GoalTrackerActivity"/>
+        <activity
+            android:name=".goaltracker.AddGoalActivity"
+            android:parentActivityName=".goaltracker.GoalTrackerActivity" />
+        <activity
+            android:name=".notes.EditNotesActivity"
+            android:parentActivityName=".notes.NotesMainActivity"/>
+        <activity android:name=".signup.SignUpSuccess" />
+        <activity android:name=".planner.ViewPlanner" />
+        <activity android:name=".degreetracker.ViewGPA" />
+        <activity android:name=".signup.SignUp" />
         <activity android:name=".EditProfileActivity" />
-        <activity android:name=".NotesMainActivity" />
         <activity
-            android:name=".ui.goaltracker.GoalTrackerActivity"
+            android:name=".notes.NotesMainActivity"
+            android:parentActivityName=".MainMenuActivity"/>
+        <activity
+            android:name=".goaltracker.GoalTrackerActivity"
             android:label="@string/title_activity_goal_tracker"
             android:theme="@style/Theme.StudentPlanner.NoActionBar" />
         <activity
-            android:name=".ViewAllCoursesActivity"
-            android:parentActivityName=".DegreeTrackerActivity" />
+            android:name=".degreetracker.ViewAllCoursesActivity"
+            android:parentActivityName=".degreetracker.DegreeTrackerActivity" />
         <activity
-            android:name=".EditCourseActivity"
-            android:parentActivityName=".ViewAllCoursesActivity" />
+            android:name=".degreetracker.EditCourseActivity"
+            android:parentActivityName=".degreetracker.ViewAllCoursesActivity" />
         <activity
-            android:name=".AddNewCourseActivity"
-            android:parentActivityName=".DegreeTrackerActivity" />
+            android:name=".degreetracker.AddNewCourseActivity"
+            android:parentActivityName=".degreetracker.DegreeTrackerActivity" />
         <activity android:name=".MainMenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,7 +47,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DegreeTrackerActivity"
+            android:name=".degreetracker.DegreeTrackerActivity"
             android:parentActivityName=".MainMenuActivity" />
         <activity
             android:name=".ui.login.LoginActivity"
